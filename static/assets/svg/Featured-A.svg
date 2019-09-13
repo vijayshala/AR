@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="813px" height="514px" viewBox="0 0 813 514" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>featured-card</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3,0 L790,0 C791.656854,-3.04359188e-16 793,1.34314575 793,3 L793,491 C793,492.656854 791.656854,494 790,494 L3,494 C1.34314575,494 2.02906125e-16,492.656854 0,491 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z" id="path-1"></path>
+        <filter x="-2.0%" y="-2.8%" width="104.0%" height="106.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="featured-card" transform="translate(10.000000, 8.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <g id="Group-8" mask="url(#mask-2)">
+                <g transform="translate(55.000000, 357.000000)"></g>
+            </g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-226.000000, -541.000000)">
+                    <g>
+                        <polygon id="Fill-1" fill="#F1F1F3" points="479.7864 364.0609 464.3464 397.3819 464.3464 397.3979 268.6114 820.0439 246.9204 866.8919 682.8614 866.8919 667.5044 833.9009 298.5514 833.9009 482.5734 436.5419 509.7244 377.9169 845.4074 1099.1799 882.1604 1099.1799 539.6314 363.9939 509.6434 299.5799"></polygon>
+                        <polygon id="Fill-2" fill="#F1F1F3" points="202.3821 960.1399 193.4751 979.1429 137.3731 1099.1799 174.2411 1099.1799 223.3471 993.1309 741.6181 993.1309 726.2601 960.1399"></polygon>
+                        <polygon id="Fill-3" fill="#F1F1F3" points="509.5935 0.9964 85.7605 916.2124 -0.0005 1099.1804 36.4225 1099.1804 115.6665 930.1344 509.6595 79.3494 984.3155 1099.1804 1020.7045 1099.1804"></polygon>
+                        <polygon id="Fill-4" fill="#F1F1F3" points="404.3034 377.9173 173.3344 876.6733 85.2314 1064.6213 69.0494 1099.1803 105.4724 1099.1803 115.1044 1078.6263 184.7644 930.0193 712.2404 930.0193 696.8824 897.0283 200.2384 897.0283 203.2404 890.6113 440.6764 377.9173 509.7084 228.8473 914.7714 1099.1803 951.1764 1099.1803 509.6264 150.4943"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

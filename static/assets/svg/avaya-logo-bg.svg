@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="244px" viewBox="0 0 1440 244" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1440" height="308"></rect>
+    </defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Industry-Detail-–-Desktop" transform="translate(0.000000, -741.000000)">
+            <g id="Group" transform="translate(0.000000, 741.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g id="Group-55" mask="url(#mask-2)" fill="#F9F9FA">
+                    <g transform="translate(-62.000000, -200.000000)">
+                        <polygon id="Fill-1" points="1361.98153 0 1204 323 1267.69766 323 1290.70818 273.974132 1434.98132 273.974132 1417.66545 231.272525 1310.78119 231.272525 1383.96135 73.6030723 1500.30234 323 1564 323 1406.04423 0"></polygon>
+                        <polygon id="Fill-2" points="158.007301 0 0 323 63.7234271 323 86.7597166 273.974132 230.955551 273.974132 213.691218 231.272525 106.832725 231.272525 180.012884 73.6030723 296.328108 323 360 323 202.070002 0"></polygon>
+                        <polygon id="Fill-3" points="757.981533 0 600 323 663.697659 323 686.708181 273.974132 830.981318 273.974132 813.66545 231.272525 706.78119 231.272525 779.987116 73.6030723 896.328108 323 960 323 802.044234 0"></polygon>
+                        <polygon id="Fill-4" points="595.335648 0 478.987112 254.127268 362.561252 0 299 0 456.897902 323 459.526956 323 498.344168 323 501.050548 323 659 0"></polygon>
+                        <polygon id="Fill-5" points="1202.42208 0 1081.24519 258.728083 969.655237 0 906 0 1049.67528 322.806319 987.050898 444 1047.97437 444 1266 0"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,73 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .example-container{
+    border: 2px solid #e5dcdc;
+    border-bottom: 6px solid #a3cae9;
+  }
+  .mat-checkbox-inner-container {
+    display: inline-block;
+    height: 16px;
+    line-height: 0;
+    margin: auto;
+    margin-right: 8px;
+    order: 0;
+    color:red;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 16px;
+    flex-shrink: 0;
+}
+
+// ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+//   background-color: red !important; /* Red background for example */
+// }
+
+// ::ng-deep .mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background {
+//   background-color: #e5dcdc !important; /* Red background for example */
+// }
+
+.example-tab-icon {
+  font-size: 15px;
+  color: #f75146;
+  padding: 5px;
+  cursor: pointer;
+}
+.subrow_1{
+  position:absolute;
+  margin-top:-25px;
+}
+.subrow_2{
+ position:relative;
+ top:-2px;
+ width:100%; 
+}
+.subrow_3{
+  position:relative;top:30px;margin-left:-196px;width:100%;
+}
+@media screen and (-ms-high-contrast: active),
+  screen and (-ms-high-contrast: none) {
+    .subrow_2{
+      position:relative;
+      top:-2px;
+      width:100%; 
+     }
+     .subrow_1{
+      position:absolute;
+      margin-top:-15px;
+    }
+    .subrow_2_reseller{
+      position:relative;
+      top:4px;
+      width:100%; 
+     }
+      }

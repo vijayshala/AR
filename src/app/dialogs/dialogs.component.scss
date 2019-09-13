@@ -1,0 +1,165 @@
+@import '~ngx-toastr/toastr';
+ 
+// bootstrap style toast 
+// or import a bootstrap 4 alert styled design (SASS ONLY) 
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions 
+// @import '~ngx-toastr/toastr-bs4-alert';
+ 
+// if you'd like to use it without importing all of bootstrap it requires 
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
+
+
+.table-accordion {
+  padding: 10px 0 0 0;
+  display: grid;
+  display: -ms-grid;
+  grid-gap: 10px;
+  border-top: 1px solid lightgrey;
+}
+
+.mat-tables {
+  display: block;
+  border: 1px solid #b0b0b0;
+  max-height: 250px;
+  overflow: auto;
+}
+
+.mat-tables_quotes{
+  display: block;
+  border: 1px solid #b0b0b0;
+  max-height: 250px;
+  overflow: auto;
+}
+
+.dialog-title {
+  background: #DA291C;
+  height: 45px;
+  padding: 8px 20px;
+  color: white;
+}
+
+.dialog-content {
+  padding: 0 15px 10px 15px;
+  margin: 0;
+  max-height: none!important;
+    overflow: unset!important;
+}
+
+.button-cancel {
+  float:right;
+  margin-left: 10px;
+  border-radius:0px !important;
+  width: 120px;
+}
+
+.button-ok {
+  float:right;
+  border-radius:0px !important;
+  width: 120px;
+}
+
+.mat-rows,
+.mat-header-rows {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: ridge;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  font-size: 13px;
+}
+
+.mat-header-rows {
+  // box-shadow: 0 5px 3px -3px #b0b0b0;
+  background: #f6f6f6;
+  color: #3f3f3f;
+}
+
+.mat-header-inner-table {
+  min-height: 30px; color: #000000;
+  border-bottom: 1px solid #b4b4b4;
+  background: #f6f6f6;
+}
+
+.mat-cells,
+.mat-header-cells {
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+/deep/ .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 0!important;
+}
+
+
+/deep/ .cdk-overlay-pane{
+  width: 80%!important;
+}
+/deep/ .cdk-overlay-connected-position-bounding-box > .cdk-overlay-pane {
+  width: 200px!important;
+}
+
+/deep/ .mat-select-panel-wrap {
+  max-width: 100px;
+  margin-left: 40px;
+}
+
+.quotes_title {
+  border-bottom: 3px solid #da291c;
+  width: 121px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.upload_Document_title {
+  border-bottom: 3px solid #da291c;
+  width: 172px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.button-browse, .button-upload {
+  width: 160px;
+  height: 37px;
+  color: #fff;
+  margin-left: 15px;
+  padding: 5px;
+}
+
+.po_formfields > mat-form-field {
+  margin-right: 20px;
+  width: 300px;
+  padding-right: 20px;
+}
+// ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+//   background-color: red !important; /* Red background for example */
+// }
+
+
+.dialog-footer {
+  padding: 0 15px 15px 15px;
+  margin: 0;
+  text-align: -webkit-match-parent;
+  display: block;
+}
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+  .table-accordion{
+    // float: right;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+  }
+  .mat-tables_quotes{
+    min-width: 1100px;
+  }
+  .quotes_title {
+    width: 121px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+}

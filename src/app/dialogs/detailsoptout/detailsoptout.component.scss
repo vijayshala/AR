@@ -1,0 +1,14 @@
+@import '../dialogs.component.scss';
+
+// ::ng-deep .mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background {
+//     background-color: #b0b0b0 !important;
+// }
+mat-form-field { 
+    width: 435px !important
+   } 
+   ::ng-deep .mat-select-panel {
+        min-width: 435px!important; 
+       }
+       ::ng-deep .warning{
+        background:black!important;
+       }

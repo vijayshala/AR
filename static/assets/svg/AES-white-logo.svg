@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="28" viewBox="0 0 140 28">
+  <g id="Group_2" data-name="Group 2" transform="translate(-1062 -869)">
+    <g id="avaya-logo-white" transform="translate(1062 872)">
+      <g id="Home-Max-Width-_-Desktop" data-name="Home-Max-Width-–-Desktop" transform="translate(-390 -26)">
+        <g id="Group-33" transform="translate(330)">
+          <g id="Group-3" transform="translate(-516)">
+            <g id="Group_1" data-name="Group 1" transform="translate(516)">
+              <g id="avaya-logo-white-2" data-name="avaya-logo-white" transform="translate(60 26)">
+                <path id="Fill-1" d="M75.777,0,67,18h3.539l1.278-2.732h8.015l-.962-2.38H72.932L77,4.1,83.461,18H87L78.225,0Z" fill="#fff" fill-rule="evenodd"/>
+                <path id="Fill-2" d="M8.778,0,0,18H3.54l1.28-2.732h8.011l-.959-2.38H5.935L10,4.1,16.463,18H20L11.226,0Z" fill="#fff" fill-rule="evenodd"/>
+                <path id="Fill-3" d="M41.777,0,33,18h3.539l1.278-2.732h8.015l-.962-2.38H38.932L43,4.1,49.463,18H53L44.225,0Z" fill="#fff" fill-rule="evenodd"/>
+                <path id="Fill-4" d="M33.463,0,27,14.162,20.531,0H17l8.772,18h2.453L37,0Z" fill="#fff" fill-rule="evenodd"/>
+                <path id="Fill-5" d="M66.468,0,59.736,14.568,53.536,0H50l7.982,18.176L54.5,25h3.385L70,0Z" fill="#fff" fill-rule="evenodd"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <text id="Enterprise_Store" data-name="Enterprise
+Store" transform="translate(1157 880)" fill="#fff" font-size="10" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Enterprise</tspan><tspan x="0" y="10">Store</tspan></text>
+  </g>
+</svg>

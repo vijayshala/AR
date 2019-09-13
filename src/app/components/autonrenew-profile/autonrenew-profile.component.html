@@ -1,0 +1,181 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+
+<div class="container container-md ">
+  <div class="text-center mb-3 ">
+    <div class="h2 text-bold" style="color: #777777; font-size: 30px;">{{adminRole}} Profile Details </div>
+  </div>
+</div>
+<a (click)="gotoDashboard()" style="font-size: 15px;cursor: pointer; margin-top:2%;margin-left:87%;color:green;">
+  <i class="fa fa-arrow-circle-left" style="color:green;"></i> AutoRenew Dashboard
+</a>
+<mat-card class="mat-card-style">
+  <div class="row">
+    <mat-card class="example-card" style="margin: 15px; width: 100%">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <i class="material-icons">account_circle</i>
+        </div>
+        <mat-card-title>
+          <span *ngIf="profileData && profileData.userReseller">{{profileData.userReseller.userFirstName}}
+            {{profileData.userReseller.userLastName}}</span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <span class="key">Company Name:</span>
+          <span *ngIf="profileData && profileData.userReseller">{{profileData.userReseller.userCompany}}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <h2 class="heading" style="width: 75px;">Reseller</h2>
+  <mat-dialog-content *ngIf="adminRole == 'T1'">
+    <div class="mat-tables">
+      <div class="table-accordion">
+        <mat-table #table1 [dataSource]="t1ResellerDataSource">
+          <ng-container matColumnDef="Link_Id" style="flex: 0.2;">
+            <mat-header-cell *matHeaderCellDef> Link Id </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.resLinkId}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Email_Id" style="flex: 0.3;">
+            <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+            <mat-cell *matCellDef="let element; let index = index" #emailCell>
+              <div *ngIf="!element.updateEmail">
+                <span>{{element.resEmailId}}</span>
+                <i matTooltip="Edit" class="material-icons" style="cursor: pointer;"
+                  (click)="element.updateEmail = !element.updateEmail; element.emailNewValue=element.resEmailId;">edit</i>
+              </div>
+              <div *ngIf="element.updateEmail">
+                <mat-form-field>
+                  <!-- <input matInput [(ngModel)]="element.emailNewValue"> -->
+                  <input matInput [(ngModel)]="element.emailNewValue" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    id="email" name="email" ngModel #emailref="ngModel">
+                  <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
+                  </div>
+                </mat-form-field>
+                <!-- <i matTooltip="Save" class="material-icons"
+                    (click)="element.updateEmail = !element.updateEmail; element.distiEmailId = element.emailNewValue == '' ? element.distiEmailId : element.emailNewValue"
+                    style="cursor: pointer;">save</i> -->
+              </div>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Po_Number">
+            <mat-header-cell *matHeaderCellDef> PO Number </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div *ngIf="!element.updatePO">
+                <span>{{element.resPONumber | decodeHtmlEntities}}</span>
+                <i matTooltip="Edit" class="material-icons" style="cursor: pointer;"
+                  (click)="element.updatePO = !element.updatePO">edit</i>
+              </div>
+              <div *ngIf="element.updatePO">
+                <mat-form-field>
+                  <mat-select placeholder="Prefix" [(ngModel)]="selectedPrefixName">
+                    <mat-option *ngFor="let selected of prefixList" [value]="selected.key">
+                      {{selected.value}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf='selectedPrefixName == "K2"'>
+                  <mat-select placeholder="Link Id" [(ngModel)]="_poNumber.selectedPrefixLinkId">
+                    <mat-option *ngFor="let selected of linkIdList" [value]="selected.resLinkId">
+                      {{selected.resLinkId}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf='selectedPrefixName == "K1"'>
+                  <input matInput placeholder="Alphanumeric Value"
+                    [(ngModel)]="_poNumber.selectedPoAlphaNumericPrefixValue">
+                </mat-form-field>
+                <mat-form-field *ngIf='selectedPrefixName == "K3"'>
+                  <input matInput placeholder="PO Contract Value" [(ngModel)]="_poNumber.selectedPoContractPrefixValue">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Value" [(ngModel)]="_poNumber.poValue">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-select placeholder="Suffix" [(ngModel)]="selectedSuffixName">
+                    <mat-option *ngFor="let selected of prefixList" [value]="selected.key">
+                      {{selected.value}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf='selectedSuffixName == "K1" || selectedSuffixName == "K3"'>
+                  <input matInput placeholder="Value" [(ngModel)]="_poNumber.selectedSuffixValue">
+                </mat-form-field>
+                <mat-form-field *ngIf='selectedSuffixName == "K2"'>
+                  <mat-select placeholder="Link Id" [(ngModel)]="_poNumber.selectedSuffixLinkId">
+                    <mat-option *ngFor="let selected of linkIdList" [value]="selected.resLinkId">
+                      {{selected.resLinkId}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <i matTooltip="Update" class="material-icons"
+                  (click)="element.updatePO = !element.updatePO; element.resPONumber = formPoNumber() ? formPoNumber() : element.resPONumber"
+                  style="cursor: pointer;">save</i>
+              </div>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="interested_to_auto_renew">
+            <mat-header-cell *matHeaderCellDef> Interested to auto renew</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-form-field>
+                <mat-select placeholder="Interested" [(ngModel)]="element.resAutorenew">
+                  <mat-option *ngFor="let selected of interestedAutoRenewList" [value]="selected.key">
+                    {{selected.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columnsHeader;sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columnsHeader;" class="element-row"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator1 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-content *ngIf="adminRole == 'T2'">
+    <div class="mat-tables">
+      <div class="table-accordion">
+        <mat-table #table2 [dataSource]="t2ResellerDataSource">
+          <ng-container matColumnDef="Link_Id">
+            <mat-header-cell *matHeaderCellDef> Link Id </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.resLinkId}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Reseller_name">
+            <mat-header-cell *matHeaderCellDef> Reseller Name </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.resCompanyName | decodeHtmlEntities}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Email_Id">
+            <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+            <mat-cell *matCellDef="let element; let index = index" #emailCell>
+              <div *ngIf="!element.updateMail">
+                <span>{{element.resEmailId}}</span>
+                <i matTooltip="Edit" class="material-icons" style="cursor: pointer;"
+                  (click)="element.updateMail = !element.updateMmail; element.newResEmailId=element.resEmailId">edit</i>
+              </div>
+              <div *ngIf="element.updateMail">
+                <mat-form-field>
+                  <input matInput [(ngModel)]="element.newResEmailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    id="email" name="email" ngModel #emailref="ngModel">
+                  <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
+                  </div>
+                </mat-form-field>
+              </div>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="resellerColumnsHeader;sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: resellerColumnsHeader;" class="element-row"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator2 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <div class="table-accordion" style="padding: 15px 0 40px;">
+    <div class="accordion-col3">
+      <button class="btn btn-secondary button-cancel" (click)="cancelChanges()">Cancel</button>
+      <button class="btn btn-secondary button-ok" (click)="submitProfile()">Submit</button>
+    </div>
+  </div>
+</mat-card>

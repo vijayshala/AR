@@ -1,0 +1,230 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+table {
+  width: 100%;
+}
+
+.heading {
+    border-bottom: 3px solid #da291c;
+    font-weight: 600;
+    font-size: 20px;
+    color: #777777;
+}
+
+.heading-secondry {
+  border-bottom: 3px solid #da291c;
+  font-weight: 600;
+  font-size: 18px;
+  color: #777777;
+  width: 70px;
+}
+
+.profile-form {
+    min-width: 176px;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px 0;
+}
+  
+.profile-full-width {
+    width: 50%;
+    padding: 10px;
+}
+
+
+.mat-tables {
+    display: block;
+    border: 1px solid #b0b0b0;
+    // max-height: 250px;
+    // overflow: auto;
+    // width: 80%;
+  }
+  
+  .dialog-title {
+    background: #DA291C;
+    height: 45px;
+    padding: 8px 20px;
+    color: white;
+  }
+  
+  .dialog-content {
+    padding: 0 15px 10px 15px;
+    margin: 0;
+    max-height: none!important;
+      overflow: unset!important;
+  }
+  
+  .button-cancel {
+    float:right;
+    margin-left: 10px;
+    border-radius:0px !important;
+    width: 120px;
+  }
+  
+  .button-ok {
+    float:right;
+    border-radius:0px !important;
+    width: 120px;
+  }
+  
+  .mat-rows,
+  .mat-header-rows {
+    display: flex;
+    border-bottom-width: 1px;
+    border-bottom-style: ridge;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 24px;
+    font-size: 13px;
+  }
+  
+  .mat-header-rows {
+    // box-shadow: 0 5px 3px -3px #b0b0b0;
+    background: #da291c;
+    color: #ffffff;
+    font-size: 14px;
+  }
+  
+  .mat-header-inner-table {
+    min-height: 30px; color: #000000;
+    border-bottom: 1px solid #b4b4b4;
+    background: #f6f6f6;
+  }
+  
+  .mat-cells,
+  .mat-header-cells {
+    flex: 1;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+
+  .profile_details > div{
+    padding: 15px
+  }
+
+  .profile_details > div > span{
+    padding-right: 15px;
+    font-weight : bold;
+  }
+
+  .mat-card-style{
+    margin: 30px 15px;
+    z-index: 0;
+  }
+
+
+
+  @media screen and (-ms-high-contrast: active),
+  screen and (-ms-high-contrast: none) {
+    .heading {
+      border-bottom: 3px solid #da291c;
+      font-weight: 600;
+      font-size: 20px;
+      color: #777777;
+  }
+  
+  .heading-secondry {
+    border-bottom: 3px solid #da291c;
+    font-weight: 600;
+    font-size: 18px;
+    color: #777777;
+    width: 70px;
+  }
+  
+  .profile-form {
+      min-width: 176px;
+      max-width: 800px;
+      width: 100%;
+      padding: 20px 0;
+  }
+    
+  .profile-full-width {
+      width: 50%;
+      padding: 10px;
+  }
+  
+  
+  .mat-tables {
+      display: block;
+      border: 1px solid #b0b0b0;
+      // max-height: 250px;
+      // overflow: auto;
+      // width: 80%;
+    }
+    
+    .dialog-title {
+      background: #DA291C;
+      height: 45px;
+      padding: 8px 20px;
+      color: white;
+    }
+    
+    .dialog-content {
+      padding: 0 15px 10px 15px;
+      margin: 0;
+      max-height: none!important;
+        overflow: unset!important;
+    }
+    
+    .button-cancel {
+      float:right;
+      margin-left: 10px;
+      border-radius:0px !important;
+      width: 120px;
+    }
+    
+    .button-ok {
+      float:right;
+      border-radius:0px !important;
+      width: 120px;
+    }
+    
+    // .mat-rows,
+    // .mat-header-rows {
+    //   display: flex;
+    //   border-bottom-width: 1px;
+    //   border-bottom-style: ridge;
+    //   align-items: center;
+    //   min-height: 48px;
+    //   padding: 0 24px;
+    //   font-size: 13px;
+    // }
+    
+    // .mat-header-rows {
+    //   // box-shadow: 0 5px 3px -3px #b0b0b0;
+    //   background: #da291c;
+    //   color: #ffffff;
+    //   font-size: 14px;
+    // }
+    
+    // .mat-header-inner-table {
+    //   min-height: 30px; color: #000000;
+    //   border-bottom: 1px solid #b4b4b4;
+    //   background: #f6f6f6;
+    // }
+    
+    // .mat-cells,
+    // .mat-header-cells {
+    //   flex: 1;
+    //   overflow: hidden;
+    //   word-wrap: break-word;
+    // }
+  
+    mat-header-cell > mat-cell {
+      height: 66px !important;
+    }
+  
+    .profile_details > div{
+      padding: 15px
+    }
+  
+    .profile_details > div > span{
+      padding-right: 15px;
+      font-weight : bold;
+    }
+  
+    .mat-card-style{
+      margin: 30px 15px;
+      z-index: 0;
+    }
+  
+  }

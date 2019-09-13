@@ -1,0 +1,30 @@
+<div class="example-container" style="margin-top:2%;">
+  <mat-table #table [dataSource]="quoteList" class="mat-elevation-z8">
+    <ng-container matColumnDef="quote_id">
+      <mat-header-cell *matHeaderCellDef> Quote Id</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.parent_QUOTE_ID}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="web_ref">
+      <mat-header-cell *matHeaderCellDef> Web reference #</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.order_ref_number | decodeHtmlEntities}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="error">
+      <mat-header-cell *matHeaderCellDef>Order Center Error Message </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.error_msg | decodeHtmlEntities}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"> </mat-row>
+  </mat-table>
+</div>

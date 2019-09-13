@@ -1,0 +1,154 @@
+<div class="row" style="margin-top: 1.5%;
+margin-bottom: 2.5%;">
+  <div class="col-md-6">
+    <h2 class="heading">AutoRenew Dashboard</h2>
+  </div>
+  <div class="col-md-6">
+    <mat-icon style="font-size: 31px" class="example-tab-icon optouticon" title="Export">file_download</mat-icon>
+    <button style="background:none;border:none;float:right;" [disabled]="!chaseDetails.checked"><i
+        style="font-size:25px;margin-top: 14px;" title="OPT OUT" class="fa fa-chain-broken example-tab-icon optouticon"
+        (click)="masteroptoutDialog()" aria-hidden="true"></i></button>
+    <!-- <mat-icon class="example-tab-icon optouticon" matTooltip="OPT OUT" (click)="masteroptoutDialog()">all_out</mat-icon>  -->
+  </div>
+</div>
+
+<!-- <div class="row" id="navTabs">
+  <ul class="nav nav-tabs">
+    <li class="pull-right" (click)="listClick($event, 'export')">
+      <a data-toggle="tab"><i class="fa fa-download"></i>Export</a>
+    </li>
+
+    <li class="pull-right" (click)="listClick($event, 'filter')">
+      <a data-toggle="tab"><i class="fas fa-filter"></i>Filter</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade" [ngClass]="{ 'in active': selectedTab == 'filter' }" id="filter">
+        <mat-card style="margin-top: 15px; padding-top: 0;">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="from" placeholder="From">
+              <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+              <mat-datepicker #from></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="to" placeholder="To">
+              <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+              <mat-datepicker #to></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Eligibility</mat-label>
+              <select matNativeControl required>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Status</mat-label>
+              <select matNativeControl required>
+                <option>Pending</option>
+                <option>Cancel</option>
+              </select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Tier2</mat-label>
+              <select matNativeControl required>
+                <option>GRUPO TELVISTA SA DE CV</option>
+                <option>ITOCHU TECHNO-SOLUTIONS CORPORATION</option>
+              </select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-right: 20px;">
+          <div class="col-md-12">
+            <div class="row">
+                <div class="table-accordion">
+                 
+            <div class="accordion-col3">            
+                <button class="btn btn-secondary" style="float:right;border-radius:0px !important;"
+                (click)="closeColTab()">Close</button>
+                <button class="btn btn-secondary"
+                style="float:right;margin-right:10px;border-radius:0px !important;">Filter</button>
+            </div>
+          </div>
+             <button mat-raised-button (click)="closeColTab()">Close</button> 
+            </div>
+          </div>
+        </div>
+</mat-card>
+    </div>
+    <!-- <div class="tab-pane fade" [ngClass]="{ 'in active': selectedTab == 'defaultView' }" id="defaultView"></div>
+  <div class="tab-pane fade" [ngClass]="{ 'in active': selectedTab == 'columns' }" id="columns" ></div>
+  </div>
+
+</div> -->
+
+<div class="row" style="margin:0;">
+  <div class="col-md-4" style="padding-left: 0px;">
+    <!-- <nav style="width:100%">
+      <ul class="dashboard-sub-tabs">
+        <li><span routerLinkActive="selected" [routerLink]="['/autorenewdashboard']">Order Pending</span></li>
+        <li><span routerLinkActive="selected" [routerLink]="['/orderhistory']">Ordered</span></li>
+      
+      </ul>
+    </nav> -->
+    <div class="dashboard-tabs">
+      <ul class="tablist">
+        <li routerLinkActive="selected" [routerLink]="['/autorenewdashboard']">Order Pending</li>
+        <li routerLinkActive="selected" [routerLink]="['/orderhistory']">Ordered</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-8" style="padding-right: 0px;">
+    <!-- <mat-form-field >
+      <input matInput [matDatepicker]="from" placeholder="From">
+      <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+      <mat-datepicker #from></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="to" placeholder="To">
+      <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+      <mat-datepicker #to></mat-datepicker>
+    </mat-form-field> -->
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+      <input type="text" style="border-radius:0px;" placeholder="Select From - To Date" class="form-control"
+        bsDaterangepicker [(ngModel)]="bsRangeValue">
+    </div>
+    <button class="btn btn-primary btn-search" style="height:34px" (click)="filter()">Filter</button>
+    <!-- <button class="datepickerbtn"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+    <!-- </div>
+  <div class="col-md-6"> -->
+    <main>
+      <section class="innerDashboard">
+        <section class="table-section-wrapper">
+          <div class="table-section-head">
+            <div class="table-search" style="margin-bottom:2px">
+              <input class="form-control searchinput" type="text" placeholder="SEARCH HERE" email="search"
+                [(ngModel)]="searchTerm">
+              <button class="btn btn-primary btn-search" style="float: right;" (click)="searchText()"><i
+                  class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+
+</div>

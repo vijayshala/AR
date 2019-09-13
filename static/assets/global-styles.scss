@@ -1,0 +1,800 @@
+/**Variables**/
+$color-red: #DA291C;
+$color-black: #000;
+$color-white: #fff;
+$color-dark-gray: #313133;
+$color-gray: #575759;
+$color-medium-gray: #ccc;
+$color-light-gray: #f1f1f3;
+$color-lighter-gray: #f9f9fa;
+$color-light-blue: #a3cae9;
+$color-dark-blue: #2099fa;
+$color-green: #2dcc70;
+$color-orange: #ff9e3d;
+$color-primary-red-hover: #c01a1e;
+
+body{
+	font-family: 'HCo Gotham SSm';
+	font: 100%;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 26px;
+	background:$color-lighter-gray;
+}
+main {
+	max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	padding: 0 40px;
+	background:$color-white;
+}
+
+h1{
+	font-family: Playfair Display, Bold;
+	font-size: 44px;
+	line-height: 52px;
+	font-weight: 700;
+}
+h2{
+	font-family: Playfair Display, Bold;
+	font-size: 32px;
+	line-height: 40px;
+	font-weight: 700;
+}
+h3{
+	font-family: 'HCo Gotham SSm';
+	font-size: 20px;
+	line-height: 30px;
+	font-weight: 400;
+}
+h4{
+	font-family: 'HCo Gotham SSm';
+	font-size: 20px;
+	line-height: 26px;
+	font-weight: 400;
+}
+h5 {
+	font-family: 'HCo Gotham SSm';
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 300;
+}
+h6 {
+	font-family: 'HCo Gotham SSm';
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 300;
+}
+p,div,li{
+	font-family: 'HCo Gotham SSm';
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 26px;
+}
+p{
+	margin-bottom: 10px;
+	&:empty{
+		display: none;
+	}
+}
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color: $color-black;
+}
+.text-subhead{
+	font-family: 'HCo Gotham SSm';
+	font-size: 20px;
+	line-height: 30px;
+	font-weight: 300;
+}
+.text-Large-body{
+	font-family: 'HCo Gotham SSm';
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 300;
+}
+.text-body{
+	font-family: 'HCo Gotham SSm';
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 300;
+}
+.text-small-body{
+	font-family: 'HCo Gotham SSm';
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 300;
+}
+.text-tiny-body{
+	font-family: 'HCo Gotham SSm';
+	font-size: 12px;
+	line-height: 22px;
+	font-weight: 200;
+}
+.hide {
+	display: none;
+}
+
+.play-btn {
+	background: $color-red;
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+	position: relative;
+	cursor: pointer;
+	&:after {
+		content: "";
+		width: 0;
+		height: 0;
+		border-top: 15px solid transparent;
+		border-left: 20px solid $color-white;
+		border-bottom: 15px solid transparent;
+		position: absolute;
+		top: 50%;
+		left: 55%;
+		transform: translate(-50%,-50%);
+	}
+	&:hover {
+		background: $color-primary-red-hover;
+	}
+	&.small-play-btn {
+		height: 40px;
+		width: 40px;
+		&:after {
+			content: "";
+			width: 0;
+			height: 0;
+			border-top: 8px solid transparent;
+			border-left: 12px solid $color-white;
+			border-bottom: 8px solid transparent;
+			position: absolute;
+			top: 50%;
+			left: 55%;
+			transform: translate(-50%,-50%);
+		}
+	}
+}
+.pattern-underline {
+	background: url(/assets/svg/avaya-bar.svg) no-repeat 50% 100%;
+	
+}
+.av-eyebrow-text{
+	position: relative;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    p{
+    	max-width: 300px;
+    	word-break: break-word;
+    	font-family: 'HCo Gotham SSm';
+	    font-size: 12px;
+	    line-height: 22px;
+	    font-weight: 200;
+    }
+    .eyebrow-underline{
+    	content: '';
+	    width: 40px;
+	    height: 3px;
+	    background: $color-light-blue;
+	    position: absolute;
+    }
+}
+
+/* This is for H2 title heaidng on modules */
+h2.pattern-underline{
+	padding-bottom: 30px;
+	margin-bottom: 60px;
+	text-align: center;
+}
+.av-bottom-border{
+	width: 90%;
+    height: 1px;
+    background: $color-light-gray;
+    display: block !important;
+    z-index: 999;
+    margin: 0 auto;
+}
+
+/* Buttons */
+
+.btn {
+    background: none;
+	padding: 9px 30px 8px;
+
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	@extend .text-small-body;
+	outline: none;
+    position: relative;
+    //text-transform: uppercase;
+    z-index: 1;
+	overflow: hidden;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+	transition: all 0.3s;
+	font-weight: 400;
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        height: 100%;
+        left: -50%;
+        top: 0;
+        transform: skew(50deg);
+        transition-duration: 0.6s;
+        transform-origin: top left;
+        width: 0;
+    }
+    &:hover {
+        &:after {
+            height: 100%;
+            width: 150%;
+        }
+	}
+	&.btn-primary {
+		background: $color-red;
+		color: $color-white;
+		border: 0px solid $color-red;
+		border-radius: 0px;
+		padding: 11px 30px 10px;
+		&:before, &:after {
+			background: $color-primary-red-hover;
+		}
+	}
+	&.btn-secondary {
+		background: $color-white;
+		border: 2px solid $color-red !important;
+		color: $color-black;
+		&:before, &:after {
+			background: $color-red;
+		}
+		&:hover {
+			color: $color-white;
+		}
+	}
+	&.btn-secondary-white-outline {
+		background: $color-red;
+		border: 2px solid $color-white;
+		color: $color-white;
+		&:before, &:after {
+			background: $color-primary-red-hover;
+		}
+	}
+	&.disabled,
+	&:disabled,
+	&[disabled] {
+		background: $color-lighter-gray;
+		border: 2px solid $color-lighter-gray;
+		cursor: auto;
+		color: $color-gray;
+		&:before, &:after {
+			background: $color-lighter-gray;
+		}
+		&:hover {
+			color: $color-gray!important;
+		}
+	}
+	@media (min-width: 767px) and (max-width: 1024px) {
+		&:after{
+			display: none;
+		}
+		&:before{
+			display: none;
+		}
+		&:hover{
+			&:after {
+				display: none;
+			}
+		}
+		&.btn-primary{
+			&:hover{
+				color: $color-white !important;
+			}	
+		}
+		&.btn-secondary{
+			&:hover{
+				color: $color-red !important;
+			}	
+		}
+	}
+	@media screen and (max-width: 767px) {
+		&:after{
+			display: none;
+		}
+		&:before{
+			display: none;
+		}
+		&:hover{
+			&:after {
+				display: none;
+			}
+		}
+		&.btn-primary{
+			&:hover{
+				color: $color-white !important;
+			}	
+		}
+		&.btn-secondary{
+			&:hover{
+				color: $color-red !important;
+			}	
+		}
+	}
+}
+a {
+	&:hover {
+		.sliding-arrow {
+			width: 20px;
+			margin-right: 0;
+			background-image: url(/static/avaya/assets/svg/arrow-right.svg)
+		}
+	}
+	&.underline {
+		&:hover {
+			color: $color-red;
+		}
+	}
+}
+.sliding-arrow {
+	background: url(/static/avaya/assets/svg/caret-right.svg) no-repeat right;
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	-webkit-transition: width 500ms, margin-right 500ms;
+	transition: width 500ms, margin-right 500ms;
+	margin-left: 10px;
+	margin-right: 10px;
+	&:hover {
+		width: 20px;
+		margin-right: 0;
+		background-image: url(/static/avaya/assets/svg/arrow-right.svg);
+	}
+}
+
+//Text rotation
+.rotate {
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	display: inline-block;
+	font-size: 11px;
+	line-height: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Inactive treatment on the Header */
+.inactive-bar{
+	padding: 15px 100px;
+    text-align: center;
+    background: #ff9e3d;
+}
+.inactive-item{
+	background: #ff9e3d;
+}
+
+/* style for highlighted item */
+.current-item{
+	color: $color-red !important;
+	a{
+		color: $color-red !important;
+	}
+}
+/* styles for inline-page items */
+
+.intro-three-col{
+	max-width: 77%;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    /*border-bottom: 1px solid $color-light-gray;*/
+    padding: 50px 30px;
+    .inner{
+    	display: flex;
+	    flex-direction: row;
+	    flex-wrap: wrap;
+	    .col{
+	    	padding: 20px;
+	    	width: 33.2%;
+	    	h3{
+	    		padding: 20px 0px;
+	    		&:before {
+	                content: "";
+	                display: block;
+	                width: 40px;
+	                padding-top: 10px;
+	                border-top: 3px solid $color-light-blue;
+	            }
+			}
+			.bullets{
+				list-style-type: none;
+				padding: 10px 10px 30px;
+				margin: 5px 0;
+				ul{
+					li{
+						padding: 5px 10px;
+						color: #313133;
+						font-weight: 400;
+						position: relative;
+						&:before{
+							content: " ";
+							position: absolute;
+							width: 0;
+							height: 0;
+							top: 13px;
+							left: -8px;
+							border: 4px solid;
+							border-color: #b3e6ef transparent transparent #b3e6ef;
+							transform: rotate(135deg);
+						}
+					}
+				}
+			}
+			img{
+                position: relative;
+                top: 3px;
+                left: 5px;
+            }
+	    }
+    }
+    @media (min-width: 767px) and (max-width: 1024px) {
+    	max-width: 100%;
+    }
+    @media screen and (max-width: 767px){
+    	padding: 40px 20px;
+    	max-width: 100%;
+    	.inner{
+    		flex-direction: column;
+    		.col{
+    			width: 100%;
+    			padding: 15px;
+    		}
+    	}
+    }
+}
+/* Styles for jump to anchor */
+.empty-jumpTo{
+	height: 150px;
+	display: block;
+}
+/* End */
+
+.tooltip{
+	position: relative;
+	.tooltip-dd{
+		display: none;
+	    position: absolute;
+	    top: 38px;
+	    z-index: 9;
+	    &:before{
+	    	content: ' ';
+		    position: absolute;
+		    width: 0;
+		    height: 0;
+		    left: 10px;
+		    top: -7px;
+		    border: 8px solid;
+		    border-color: #DDDDDD transparent transparent #DDDDDD;
+		    transform: rotate(45deg);
+	    }
+	    &:after{
+	    	content: ' ';
+		    position: absolute;
+		    width: 0;
+		    height: 0;
+		    left: 11px;
+		    top: -6px;
+		    border: 7px solid;
+		    border-color: $color-white transparent transparent $color-white;
+		    transform: rotate(45deg);
+	    }
+	}
+	&:hover{
+        .tooltip-dd{
+            display: block;
+        }
+    }
+}
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	stroke-width: 0;
+	stroke: currentColor;
+	fill: currentColor;
+	&.icon-caret-right {
+		fill: transparent;
+		stroke: $color-red;
+	}
+	&.icon-plus,&.icon-minus {
+		stroke: #da291c;
+		fill:#da291c;
+	}
+	&.icon-arrow-right {
+		fill: transparent;
+		stroke: $color-red;
+		width: 30px;
+	}
+	&.icon-dropdown-arrow {
+		fill: transparent;
+		stroke: currentColor;
+		width: 15px;
+		margin-left: 7px;
+		vertical-align: middle;
+		&.icon-up-arrow {
+			-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+		}
+	}
+}
+.underline {
+	border-bottom: 1px solid $color-gray;
+	position: relative;
+	&:after {
+		content: '';
+		display: block;
+		border-bottom: 1px solid $color-red;
+		width: 0;
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		-webkit-transition: 1s ease;
+		transition: 1s ease;
+		
+	}
+	&:hover{
+		color: $color-red;
+		&:after {
+			width: 100%;
+		}
+	}
+}
+
+
+@media screen and (max-width: 767px) {
+
+	h1{
+		font-family: Playfair Display, Bold;
+		font-size: 36px;
+		line-height: 44px;
+		font-weight: 600;
+	}
+	h2{
+		font-family: Playfair Display, Bold;
+		font-size: 28px;
+		line-height: 36px;
+		font-weight: 600;
+	}
+	h3{
+		font-family: 'HCo Gotham SSm';
+		font-size: 20px;
+		line-height: 30px;
+		font-weight: 400;
+	}
+	h4{
+		font-family: 'HCo Gotham SSm';
+		font-size: 20px;
+		line-height: 26px;
+		font-weight: 500;
+	}
+	
+	h2.pattern-underline{
+		padding: 0 15px 15px 15px;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+}
+
+// App Message For IE Old Brosers
+
+.IE-older-browser {
+	width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: $color-dark-gray;
+    position: fixed;
+    min-width: 100%;
+	z-index: 99999;
+	.av-wrapper {
+		display: none !important;
+	}
+
+	.av-app-message {
+		width: 90%;
+		max-width: 1000px;
+		margin: 100px auto 0 auto;
+		padding: 0;
+		text-align: center;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		background: $color-white;
+		.av-app-message-content {
+			flex: 5;
+			padding: 60px 30px 60px 30px;
+			
+			p {
+				padding: 0 0 20px 0;
+				&:before {
+					width: 33%;
+					border: 3px solid $color-dark-blue;
+				}
+			}
+			.icons {
+				display: flex;
+				justify-content: center;
+				.icon-edge{
+					width: 100px;
+					height: 100px;
+					background: url(/static/avaya/assets/images/icon-ie-edge.jpg) no-repeat center center;
+					background-size: contain;
+				}
+				.icon-chrome {
+					width: 100px;
+					height: 100px;
+					background: url(/static/avaya/assets/images/icon-chrome.jpg) no-repeat center center;
+					background-size: contain;
+				}
+				.icon-firefox {
+					width: 100px;
+					height: 100px;
+					background: url(/static/avaya/assets/images/icon-firefox.jpg) no-repeat center center;
+					background-size: contain;
+				}
+				.icon-safari {
+					width: 100px;
+					height: 100px;
+					background: url(/static/avaya/assets/images/icon-safari.jpg) no-repeat center center;
+					background-size: contain;
+				}
+			}	
+		}
+		.av-app-message-pattern {
+			flex: 1;
+			background: url(/static/avaya/assets/images/cs-hero-detail.jpg);
+			background-size: cover;
+		}	
+	}
+}
+
+
+/* Japanese IE msg */
+body:lang(ja_JP){
+	.av-app-message{
+		background-image: url(/static/avaya/assets/images/UpdateBrowserMessage-Japanese.png);
+		background-repeat: no-repeat;
+	    background-position: 50% 50%;
+	    background-size: cover;
+	    min-height: 500px;
+		.av-app-message-content, .av-app-message-pattern{
+			display: none;
+		}
+	}	
+}
+
+/* German IE msg */
+body:lang(de_DE){
+	.av-app-message{
+		background-image: url(/static/avaya/assets/images/UpdateBrowserMessage-German.png);
+		background-repeat: no-repeat;
+	    background-position: 50% 50%;
+	    background-size: cover;
+	    min-height: 500px;
+		.av-app-message-content, .av-app-message-pattern{
+			display: none;
+		}
+	}	
+}
+
+/* Portugese IE msg */
+body:lang(pt_BR){
+	.av-app-message{
+		background-image: url(/static/avaya/assets/images/UpdateBrowserMessage-Portugese.png);
+		background-repeat: no-repeat;
+	    background-position: 50% 50%;
+	    background-size: cover;
+	    min-height: 500px;
+		.av-app-message-content, .av-app-message-pattern{
+			display: none;
+		}
+	}	
+}
+
+/* Russian IE msg */
+body:lang(ru_RU){
+	.av-app-message{
+		background-image: url(/static/avaya/assets/images/UpdateBrowserMessage-Russian.png);
+		background-repeat: no-repeat;
+	    background-position: 50% 50%;
+	    background-size: cover;
+	    min-height: 500px;
+		.av-app-message-content, .av-app-message-pattern{
+			display: none;
+		}
+	}	
+}
+
+/* Spanish IE msg */
+body:lang(es_MX){
+	.av-app-message{
+		background-image: url(/static/avaya/assets/images/UpdateBrowserMessage-Spanish.png);
+		background-repeat: no-repeat;
+	    background-position: 50% 50%;
+	    background-size: cover;
+	    min-height: 500px;
+		.av-app-message-content, .av-app-message-pattern{
+			display: none;
+		}
+	}	
+}
+
+/* Language specific styles */
+
+/* Applying specific fonts for specific locales */
+
+/* Noto fonts for Japanese */
+/* Variable for fallback fonts option*/
+$fallback-font-jp: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック', 'HelveticaNeue',Helvetica,Arial,sans-serif;
+
+body:lang(ja), body:lang(ja_JP){
+	font-family: 'noto_sanslight', 'Noto Sans JP', 'HCo Gotham SSm', $fallback-font-jp;
+	h1, h2{
+		font-family: 'noto_serifbold', 'Noto Serif JP', 'HCo Gotham SSm', $fallback-font-jp;
+	}
+	h3, h4{
+		font-family: 'noto_sansmedium', 'Noto Sans JP', 'HCo Gotham SSm', $fallback-font-jp;
+	}
+	p, div, li{
+		font-family: 'noto_sanslight', 'Noto Sans JP', 'HCo Gotham SSm', $fallback-font-jp;
+	}
+}
+
+/* Noto fonts for Korean */
+/* Variable for fallback fonts option*/
+$fallback-font-kr: "Malgun Gothic",'Helvetica Neue',Helvetica,Arial,sans-serif;
+
+body:lang(kr), body:lang(ko_KR){
+	font-family: 'noto_sanslight', 'Noto Sans KR', 'HCo Gotham SSm', $fallback-font-kr;
+	h1, h2{
+		font-family: 'noto_serifbold', 'Noto Serif KR', 'HCo Gotham SSm', $fallback-font-kr;
+	}
+	h3, h4{
+		font-family: 'noto_sansmedium', 'Noto Sans KR', 'HCo Gotham SSm', $fallback-font-kr;
+	}
+	p, div, li{
+		font-family: 'noto_sanslight', 'Noto Sans KR', 'HCo Gotham SSm', $fallback-font-kr;
+	}
+}
+
+/* Noto fonts for Chinese */
+/* Variable for fallback fonts option*/
+$fallback-font-cn: SimSun,Verdana,'Helvetica Neue',Helvetica,Arial,sans-serif;
+
+body:lang(zh), body:lang(zh_CN){
+	font-family: 'noto_sanslight', 'Noto Sans SC', 'Noto Sans TC', 'HCo Gotham SSm', $fallback-font-cn;
+	h1, h2{
+		font-family: 'noto_serifbold', 'Noto Serif SC', 'Noto Serif TC', 'HCo Gotham SSm', $fallback-font-cn;
+	}
+	h3, h4{
+		font-family: 'noto_sansmedium', 'Noto Sans SC', 'Noto Sans TC', 'HCo Gotham SSm', $fallback-font-cn;
+	}
+	p, div, li{
+		font-family: 'noto_sanslight', 'Noto Sans SC', 'Noto Sans TC', 'HCo Gotham SSm', $fallback-font-cn;
+	}
+}

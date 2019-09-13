@@ -1,0 +1,94 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<h2 class="dialog-title" mat-dialog-title mat-dialog-draggable-title>Opt Out</h2>
+<mat-dialog-content style="padding: 15px; margin: 0;">
+  <div class="mat-tables" style="border: 1px solid #b0b0b0;">
+    <div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+      <!-- <p class="quotes_title" style="margin-bottom: 5px;">Quotes Details</p> -->
+      <mat-table #table [dataSource]="quoteDetails" style="border: 1px solid grey;">
+        <!-- <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef style="max-width:7%;">Select</mat-header-cell>
+          <mat-cell *matCellDef="let row" style="max-width:7%;padding-left:30px;">
+          </mat-cell>
+        </ng-container> -->
+
+        <ng-container matColumnDef="quote_id">
+          <mat-header-cell *matHeaderCellDef> Quote ID </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="word-break:break-word;">
+           {{element.parent_QUOTE_ID}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expiring_contractnumber">
+          <mat-header-cell *matHeaderCellDef> Contract Number </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="word-break:break-word;">
+           {{element.expiring_contractnumber}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="contract_expiry_date">
+          <mat-header-cell *matHeaderCellDef> Contract Expiry Date </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="word-break:break-word;">
+            {{element.contract_expiry_date| date: globalDateFormat.dateformat}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="includePromotion">
+          <mat-header-cell *matHeaderCellDef> Include Promotion </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="word-break:break-word;">
+            {{element.is_promotion_applied}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quoteSubStatusName">
+          <mat-header-cell *matHeaderCellDef> Opt In/Out </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div *ngIf="(element.quote_sub_status == '5' || element.quote_sub_status == '7')" style="color:green">
+              IN </div>
+            <div *ngIf="element.quote_sub_status == '6'" style="color:red">
+              OUT
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total_contract_value">
+          <mat-header-cell *matHeaderCellDef> Quote Price </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="word-break:break-word;">
+            {{element.currency_code}} {{element.avaya_net_price}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="quote_status">
+          <mat-header-cell *matHeaderCellDef> Quote Status </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="word-break:break-word;">
+            {{element.quoteSubStatusName}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="subdisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: subdisplayedColumns;" class="element-row">
+        </mat-row>
+      </mat-table>
+
+
+    </div>
+
+  </div>
+</mat-dialog-content>
+<p style="color:red; padding-left: 15px;">Warning: non-renewal may result in fragmented coverage and re-initiation fees when reinstating coverage</p>
+<mat-dialog-content class="dialog-content">
+  <div class="po_formfields">
+    <mat-form-field style="min-width:400px;">
+      <mat-label>Reason</mat-label>
+     <mat-select [(ngModel)]="selectedReason" required>
+        <mat-option *ngFor="let fields of reason_codes" [value]="fields">{{fields}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Comment" [(ngModel)]="selectedComment"></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-footer">
+  <div class="table-accordion">
+    <div class="accordion-col3">
+      <mat-label>Do you wish to proceed ?</mat-label>
+      <button class="btn btn-secondary button-cancel" (click)="cancel()">No</button>
+      <button class="btn btn-secondary button-ok" [disabled]="selectedReason === undefined || selectedReason === null"
+        (click)="optout()">Yes</button>
+    </div>
+  </div>

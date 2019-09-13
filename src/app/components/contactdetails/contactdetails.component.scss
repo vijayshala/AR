@@ -1,0 +1,62 @@
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css";
+.mainbox{
+    border: 2px solid #e5dcdc;
+    padding: 40px;
+    margin-top:2%;
+  }
+
+.button-cancel {
+    float:right;
+    margin-left: 10px;
+    border-radius:0px !important;
+    width: 120px;
+  }
+  
+  .button-ok {
+    float:right;
+    border-radius:0px !important;
+    width: 120px;
+  }
+.btn.btn-secondary .button-cancel{
+//padding: 10px 26px 1px;
+background: #fff;
+ border: 2px solid #da291c!important;
+    color: #000;
+    border-radius: 0;
+    cursor: pointer;
+    outline: 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all .3s;
+    font-weight: 400
+}
+.btn.btn-secondary{
+    //padding: 10px 26px 1px;
+    background: #fff;
+    width: 120px;
+     border: 2px solid #da291c!important;
+        color: #000;
+        border-radius: 0;
+        cursor: pointer;
+        outline: 0;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        transition: all .3s;
+        font-weight: 400
+    }
+    div {
+      position:absolute;
+     display: flex;
+   // justify-content:center
+    }
+    .payerdiv{
+      position: unset;
+    }
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+      .payerdiv{
+        position: relative;
+      }
+    }

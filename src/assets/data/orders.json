@@ -1,0 +1,50 @@
+[
+	{
+		"quoteId": "AES0000002",
+		"solutionId": "2",
+		"companyId": "2",
+		"expiryDate": "2019-08-20 00:00:00.0",
+		"quoteStatus": "Deactive",
+		"quoteCount": null
+	},
+	{
+		"quoteId": "AES0000034",
+		"solutionId": "2",
+		"companyId": "2",
+		"expiryDate": "2019-08-26 00:00:00.0",
+		"quoteStatus": "Active",
+		"quoteCount": null
+	},
+	{
+		"quoteId": "AES0000035",
+		"solutionId": "2",
+		"companyId": "2",
+		"expiryDate": "2019-08-26 00:00:00.0",
+		"quoteStatus": "Active",
+		"quoteCount": null
+	},
+	{
+		"quoteId": "AES0000037",
+		"solutionId": "2",
+		"companyId": "2",
+		"expiryDate": "2019-08-26 00:00:00.0",
+		"quoteStatus": "Active",
+		"quoteCount": null
+	},
+	{
+		"quoteId": "AES0000036",
+		"solutionId": "2",
+		"companyId": "2",
+		"expiryDate": "2019-08-26 00:00:00.0",
+		"quoteStatus": "Active",
+		"quoteCount": null
+	},
+	{
+		"quoteId": "AES0000036",
+		"solutionId": "SOL1",
+		"companyId": "2",
+		"expiryDate": null,
+		"quoteStatus": "Active",
+		"quoteCount": null
+	}
+]

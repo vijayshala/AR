@@ -1,0 +1,100 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<h2 class="dialog-title" mat-dialog-title mat-dialog-draggable-title>Po Promise</h2>
+<mat-dialog-content class="dialog-content">
+  <div class="mat-tables" style="border: 1px solid #b0b0b0;">
+    <div class="mat-header-rows">
+      <!-- <div class="mat-header-cells">Select</div> -->
+      <div class="mat-header-cells">Autorenew ID</div>
+      <div class="mat-header-cells">Tier1</div>
+      <div class="mat-header-cells">Tier2</div>
+      <div class="mat-header-cells">Payer</div>
+      <div class="mat-header-cells" style="flex: 1.5!important">Last Notification Date</div>
+      <div class="mat-header-cells">Modified Date</div>
+      <div class="mat-header-cells">Total</div>
+      <div class="mat-header-cells" style="flex: 0.2!important"></div>
+    </div>
+    <div *ngFor="let records of allItems; let index=index">
+      <div class="mat-rows">
+        <!-- <div class="mat-cells">
+                <mat-checkbox type="checkbox" (change)="selectAll($event.checked)" >
+                </mat-checkbox>
+              </div> -->
+        <div class="mat-cells">{{data.autorenew_id}}</div>
+        <div class="mat-cells" [innerHTML]="tier1"></div>
+        <div class="mat-cells" [innerHTML]="tier2"></div>
+        <div *ngIf="data.new_payer == null" class="mat-cells" [innerHTML]="data.payer"></div>
+        <div *ngIf="data.new_payer != null" class="mat-cells" [innerHTML]="data.new_payer"></div>
+        <div class="mat-cells" style="flex: 1.5!important">{{data.previous_reminder_date| date: globalDateFormat.dateformat}}</div>
+        <div class="mat-cells">{{data.updatedOn| date: globalDateFormat.dateformat}}</div>
+        <div class="mat-cells">{{data.currency_code}} {{data.sum_OF_avaya_net_price}}</div>
+        <div class="mat-cells" style="flex: 0.2!important">
+          <div class="center" *ngIf="isCollapsed[index]"
+            (click)="isCollapsed[index] = !isCollapsed[index]; quotesList(data.autorenew_id)"
+            [attr.aria-expanded]="isCollapsed[index]" [attr.aria-controls]="'collapseViewMore-' + index">
+            <i class="material-icons" style="color: red;cursor: pointer">add</i>
+          </div>
+          <div class="center" *ngIf="!isCollapsed[index]" (click)="isCollapsed[index] = !isCollapsed[index]">
+            <i class="material-icons" style="color: red;cursor: pointer">remove</i>
+          </div>
+        </div>
+      </div>
+      <div [id]="'collapseViewMore-' + index" [collapse]="isCollapsed[index]">
+        <div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+          <p class="quotes_title" style="margin-bottom: 5px;">Quotes Details</p>
+          <div class="mat-tables_quotes" style="border: 1px solid #b0b0b0;">
+            <div class="mat-header-rows"
+              style="min-height: 30px; color: #000000; border-bottom: 1px solid #b4b4b4; background: #f6f6f6;">
+              <!-- <div class="mat-header-cells">Select</div> -->
+              <div class="mat-header-cells">Quote ID</div>
+              <div class="mat-header-cells">Contract Number</div>
+              <div class="mat-header-cells">Contract Expiry Date</div>
+              <div class="mat-header-cells">Quote Price</div>
+              <div class="mat-header-cells">Include Promotion</div>
+              <div class="mat-header-cells"  *ngIf="optOutFlag">Opt In/Out</div>
+              <div class="mat-header-cells" *ngIf="optInFlag" >Opt In/Out</div>
+              <div class="mat-header-cells" *ngIf="!optOutFlag && !optInFlag">Opt In/Out</div>
+
+            </div>
+            <div *ngFor="let record of quoteDetails; let index=index">
+              <div class="mat-rows" [ngClass]="{ 'ineligible-row': record.is_eligible === 'N'}">
+                <!-- <div class="mat-cells"> -->
+                <!-- <mat-checkbox (change)="$event ? selection.toggle(row) : null" [aria-label]="checkboxLabel(row)"></mat-checkbox> -->
+                <!-- <mat-checkbox [(ngModel)]="defaultChecked" [aria-label]="checkboxLabel(row)"></mat-checkbox> -->
+                <!-- </div> -->
+                <div class="mat-cells">{{record.parent_QUOTE_ID}}</div>
+                <div class="mat-cells">{{record.expiring_contractnumber}}</div>
+                <div class="mat-cells">{{record.contract_expiry_date| date: globalDateFormat.dateformat}}</div>
+                <div class="mat-cells">{{record.currency_code}} {{record.avaya_net_price}}</div>
+                <div class="mat-cells">{{record.is_promotion_applied}}</div>
+                <div class="mat-cells" *ngIf="optOutFlag">IN</div>
+                <div class="mat-cells" *ngIf="optInFlag" style="color: red">OUT</div>
+                <div class="mat-cells" *ngIf="!optOutFlag && !optInFlag"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-content class="dialog-content">
+  <label for="pwd" class="required" style="font-size: 14px; color: #707070; padding-right: 20px;">Please select PO
+    Promise Date:</label>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" [min]="minDate" [max]="maxDate"
+      placeholder="Promise Date" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-footer">
+  <div class="table-accordion">
+    <div class="accordion-col3">
+      <button class="btn btn-secondary button-cancel" (click)="Cancel()">Cancel</button>
+      <button class="btn btn-secondary button-ok" [disabled]="selectedDate === undefined || selectedDate === null"
+        (click)="poPormiseSubmit()">Submit</button>
+    </div>
+  </div>
+</mat-dialog-actions>

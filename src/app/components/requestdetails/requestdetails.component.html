@@ -1,0 +1,166 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<div class="example-container" style="margin-top:2%;">
+  <mat-table #table [dataSource]="quotedata" class="mat-elevation-z8">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="quote_id">
+      <mat-header-cell *matHeaderCellDef> Quote Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+        [ngStyle]="{'padding-top': this.is_RESELLER == 'N' && element.is_eligible == 'Y' ? '20px' : '20px' }">
+        <div>
+          <div class="subrow_1">
+            <a (click)="goToQuotes(element)" style="color:blue">{{element.parent_QUOTE_ID}}</a>
+          </div>
+          <!-- <div class="subrow_1" *ngIf="element.is_eligible == 'N'" (click)="goToQuotes(element)" style="color:blue">
+            <p>{{element.parent_QUOTE_ID}}</p>
+          </div> -->
+          <!-- <div class="subrow_2" *ngIf="(this.is_RESELLER == 'N' && element.is_eligible == 'Y') || tierNameType == 'T1' || tierNameType == null"> -->
+          <div class="subrow_2" *ngIf="isTierFlag">
+            <!-- <span *ngIf="iseligibleflag"> -->
+            <!-- ***OPT OUT** !-->
+            <span *ngIf="element.quote_sub_status == '5' || element.quote_sub_status =='7'">
+              <span *ngIf="Freezedateflags">
+                <i style="color:gray" title="You can no longer opt-out of this renewal as the renewal date has passed."
+                  class="fa fa-chain-broken example-tab-icon"></i>
+              </span>
+              <span *ngIf="!Freezedateflags">
+                <i title="OPT OUT" class="fa fa-chain-broken example-tab-icon" (click)="detailsoptoutDialog(element)"
+                  aria-hidden="true"></i>
+              </span>
+            </span>
+            <!-- ***PO Submit** !-->
+            <span
+              *ngIf="element.quote_sub_status == '5' || element.quote_sub_status =='7' || element.quote_sub_status == '19'">
+              <span *ngIf="autorenewalFlag && !posubmitflag">
+                <mat-icon class="example-tab-icon" style="color:grey"
+                  title="You can no longer po-submit of this renewal as the renewal date has passed.">check</mat-icon>
+              </span>
+              <span *ngIf="!autorenewalFlag && !posubmitflag">
+                <mat-icon class="example-tab-icon" title="PO Submit" (click)="posubmitDialog(element)">check</mat-icon>
+              </span>
+            </span>
+            <!-- ***OPT IN** !-->
+            <span *ngIf="element.quote_sub_status == '6'">
+              <span *ngIf="Freezedateflags">
+                <mat-icon class="example-tab-icon" style="color:grey"
+                  title="You can no longer opt-in of this renewal as the renewal date has passed.">build</mat-icon>
+              </span>
+              <span *ngIf="!Freezedateflags">
+                <mat-icon class="example-tab-icon" title="OPT IN" (click)="detailsoptinDialog(element)">build</mat-icon>
+              </span>
+            </span>
+            <!-- </span> -->
+          </div>
+          <!-- ***Reseller Submit** !-->
+          <!-- <div class="subrow_2_reseller" *ngIf="(this.is_RESELLER == 'Y' && element.is_eligible == 'Y')|| tierNameType == 'T2'"> -->
+          <div class="subrow_2_reseller" *ngIf="element.is_eligible == 'Y' && tierNameType == 'T2'">
+            <span
+              *ngIf="element.quote_sub_status == '5' || element.quote_sub_status =='7' || element.quote_sub_status == '19'">
+              <span *ngIf="autorenewalFlag && !posubmitflag">
+                <mat-icon class="example-tab-icon" style="color:grey"
+                  title="You can no longer po-submit of this renewal as the renewal date has passed.">check</mat-icon>
+              </span>
+              <span *ngIf="!autorenewalFlag && !posubmitflag">
+                <mat-icon class="example-tab-icon" title="PO Submit" (click)="resellerposubmitDialog(element)">check
+                </mat-icon>
+              </span>
+            </span>
+            <!--Reseller Opt Out-->
+            <span *ngIf="element.quote_sub_status == '5' || element.quote_sub_status =='7'">
+              <span *ngIf="Freezedateflags">
+                <i style="color:gray" title="You can no longer opt-out of this renewal as the renewal date has passed."
+                  class="fa fa-chain-broken example-tab-icon"></i>
+              </span>
+              <span *ngIf="!Freezedateflags">
+                <i title="OPT OUT" class="fa fa-chain-broken example-tab-icon"
+                  (click)="detailsResellerOptoutDialog(element)" aria-hidden="true"></i>
+              </span>
+            </span>
+            <!--Reseller OptIn-->
+            <span *ngIf="element.quote_sub_status == '6'">
+              <span *ngIf="Freezedateflags">
+                <mat-icon class="example-tab-icon" style="color:grey"
+                  title="You can no longer opt-in of this renewal as the renewal date has passed.">build</mat-icon>
+              </span>
+              <span *ngIf="!Freezedateflags">
+                <mat-icon class="example-tab-icon" title="OPT IN" (click)="detailsreselleroptinDialog(element)">build
+                </mat-icon>
+              </span>
+            </span>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="expiring_contractnumber">
+      <mat-header-cell *matHeaderCellDef> Contract Number </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div><a style="color: blue;" (click)="goToContracts(element)">{{element.expiring_contractnumber}}</a></div>
+        <!-- <div *ngIf="element.is_eligible == 'N'">{{element.expiring_contractnumber}}</div> -->
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="contract_expiry_date">
+      <mat-header-cell *matHeaderCellDef> Contract Expiry Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.contract_expiry_date|datex:'DD-MMM-YYYY'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total_contract_value">
+      <mat-header-cell *matHeaderCellDef> Quote Price </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.currency_code}} {{tierNameType == 'T2' ? element.avaya_list_price : element.avaya_net_price}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="End_Customer_Name">
+      <mat-header-cell *matHeaderCellDef> End Customer Name </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="word-break:break-word">
+        {{element.endcustomer_name | decodeHtmlEntities}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Quote_status">
+      <mat-header-cell *matHeaderCellDef> Quote Status </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="word-break:break-word">
+        {{element.quote_status_name | decodeHtmlEntities}}</mat-cell>
+    </ng-container>
+
+    <!-- Include Promotion Column -->
+    <ng-container matColumnDef="is_promotion_applied">
+      <mat-header-cell *matHeaderCellDef>Include Promotion </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.is_promotion_applied}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="quote_status_name">
+      <mat-header-cell *matHeaderCellDef> Opt In/Out </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div *ngIf="element.quote_sub_status == '5' || element.quote_sub_status == '7'" style="color:green">
+          IN </div>
+        <div *ngIf="element.quote_sub_status == '6'" style="color:red">
+          OUT
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let element" matRipple class="element-row"
+      [ngClass]="{ 'ineligible-row': element.is_eligible === 'N'}" style="height: 58px;">
+    </mat-row>
+  </mat-table>
+</div>

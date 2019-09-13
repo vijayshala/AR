@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="4px" viewBox="0 0 150 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>avaya-bar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-–-Desktop" transform="translate(-640.000000, -5683.000000)" fill="#DA291C">
+            <g id="Group-81" transform="translate(110.000000, 5618.000000)">
+                <g id="Group-69" transform="translate(106.000000, 0.000000)">
+                    <g id="avaya-bar" transform="translate(424.000000, 65.000000)">
+                        <polygon id="Fill-1" points="98.8151659 0 101.10614 4 110.900474 4 108.818147 0"></polygon>
+                        <polygon id="Fill-2" points="114.454976 0 116.398335 4 133.671374 4 135.781991 0"></polygon>
+                        <polygon id="Fill-3" points="141.528668 0 139.336493 4 147.815243 4 150 0"></polygon>
+                        <polygon id="Fill-4" points="86.8192 0 84.5971564 4 93.7496881 4 95.971564 0"></polygon>
+                        <polygon id="Fill-5" points="0 0 0 4 38.3293534 4 40.521327 0"></polygon>
+                        <polygon id="Fill-6" points="44.0758294 0 46.2931317 4 55.450237 4 53.2341063 0"></polygon>
+                        <polygon id="Fill-7" points="59.0047393 0 61.0699542 4 78.2665387 4 80.3317536 0"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

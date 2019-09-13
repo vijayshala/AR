@@ -1,0 +1,16 @@
+@import '../dialogs.component.scss';
+
+.invalid_file {
+    // background: #da291c;
+    color: #da291c;
+}
+
+.upload_Document_title {
+    width: 160px;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #c7c7c7;
+    border-color: #f44336;
+  }

@@ -1,0 +1,94 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+
+<div class="example-container" style="margin-top:2%;">
+  <mat-table #table [dataSource]="rowData" class="mat-elevation-z8">
+    <ng-container matColumnDef="quote_id">
+      <mat-header-cell *matHeaderCellDef> Quote Id</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.parent_QUOTE_ID}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="poSubmitedBy">
+      <mat-header-cell *matHeaderCellDef style="min-width: 200px;"> PO Submitted By</mat-header-cell>
+      <mat-cell *matCellDef="let element" style="min-width: 200px;">
+        <div class="emailTab-overflow">
+          {{element.po_submitted_by}}
+        </div>
+      </mat-cell>
+
+    </ng-container>
+
+
+    <ng-container matColumnDef="poSubmitedDate">
+      <mat-header-cell *matHeaderCellDef>PO Submitted Date </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.po_submitted_date|datex:'DD-MMM-YYYY'}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="poNumber">
+      <mat-header-cell *matHeaderCellDef> PO Number</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.po_number}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="poAmount">
+      <mat-header-cell *matHeaderCellDef> PO Amount</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.po_amount}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="poStartDate">
+      <mat-header-cell *matHeaderCellDef> PO Start Date </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.po_issue_date|datex:'DD-MMM-YYYY' }}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="poExpirationDate">
+      <mat-header-cell *matHeaderCellDef> PO Expiration Date </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.po_expiry_date|datex:'DD-MMM-YYYY'}}
+        </div>
+      </mat-cell>
+
+    </ng-container>
+    <ng-container matColumnDef="poStatus">
+      <mat-header-cell *matHeaderCellDef>PO Status </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          {{element.poStatus}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="poDocument">
+      <mat-header-cell *matHeaderCellDef>PO Document </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>
+          <button mat-icon-button style="font-size: 21px" style="background: none"
+            [disabled]="element.owcc_id == null || element.owcc_id == '0'" class="example-tab-icon optouticon"
+            title="Download" (click)="poDocument(element.owcc_id)">
+            <mat-icon>file_download</mat-icon>
+          </button></div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"> </mat-row>
+  </mat-table>
+</div>

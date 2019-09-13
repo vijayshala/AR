@@ -1,0 +1,145 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../../../assets/global-styles.scss";
+@import "../../../assets/media-queries.scss";
+//@import "../../../assets/fonts-gotham.scss";
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  // max-height: 500px;
+  // min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell {
+  font-weight: 700;
+  font-size: 14px;
+  padding-top: 17px;
+}
+.mat-cell a {
+  color: rgb(60, 60, 216);
+}
+
+.element-row {
+  position: relative;
+  overflow: initial;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #f5f5f5;
+}
+
+.element-row.expanded {
+  border-bottom-color: transparent;
+}
+.example-tab-icon {
+  margin-right: 8px;
+}
+.mat-paginator-navigation-previous .mat-paginator-navigation-next {
+  background: none;
+}
+
+.mat-form-field {
+  padding: 4px 5px 0px 15px;
+  width: 150px;
+}
+.downloadBtn {
+  float: right;
+  width: 100px;
+  border-radius: 5px;
+  color: black;
+  margin-top: 6px;
+  background: white;
+}
+
+.nav-tabs > li > a {
+  color: black;
+  font-size: 15px;
+}
+.nav-tabs > li > a > i {
+  padding-right: 5px;
+  font-size: 12px;
+}
+.nav-tabs {
+  border-bottom: none;
+}
+.nav-tabs > li.active > a {
+  border-top: 2px solid red;
+  border-radius: 0px;
+}
+.heading {
+  margin-top: 0.5%;
+}
+.optouticon {
+  float: right;
+  cursor: pointer;
+  color: #da291c;
+  margin-top: 10px;
+}
+main {
+  padding-left: 0px;
+  padding-right: 0px;
+  border-left: none;
+  border-right: none;
+  margin-top: -70px;
+  width: 70%;
+  float: right;
+}
+.searchinput {
+  border-radius: 0px !important;
+  width: 30%;
+  position: absolute;
+  right: 0;
+}
+.tablist {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+
+  margin: 0;
+  list-style-type: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  font-size: 0;
+  width: 100%;
+  border: 1px solid #f1f1f3;
+}
+li {
+  background: #f1f1f3;
+  border-top: 0;
+  border-right: 2px solid #eee;
+  flex: 1;
+  padding: 0;
+  text-align: center;
+  height: 35px;
+  width: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px 1px 0 0;
+}
+
+.selected {
+  border-top: 3px solid red;
+  background: white;
+}
+.datepickerbtn {
+  background: #da291c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  height: 35px;
+  margin-left: 12px;
+}

@@ -1,0 +1,88 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<h2 class="dialog-title" mat-dialog-title mat-dialog-draggable-title>PO Submit</h2>
+<div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+<div class="mat-tables_quotes" style="border: 1px solid #b0b0b0;">
+  <div class="mat-header-rows"
+    style="min-height: 30px; color: #000000; border-bottom: 1px solid #b4b4b4; background: #f6f6f6;">
+     <div class="mat-header-cells">Quote ID</div>
+    <div class="mat-header-cells">Contract Number</div>
+    <div class="mat-header-cells">Contract Expiry Date</div>
+    <div class="mat-header-cells">Quote Price</div>
+    <div class="mat-header-cells">Quote Status</div>
+    <div class="mat-header-cells">Include Promotion</div>
+    <div class="mat-header-cells">Opt In/Out</div>
+     </div>
+  <div *ngFor="let record of quoteDetails; let index=index">
+    <div class="mat-rows" [ngClass]="{ 'ineligible-row': record.is_eligible === 'N'}">
+      <div class="mat-cells">{{record.parent_QUOTE_ID}}</div>
+      <div class="mat-cells">{{record.expiring_contractnumber}}</div>
+      <div class="mat-cells">{{record.contract_expiry_date | date: globalDateFormat.dateformat}}</div>
+      <div class="mat-cells">{{record.currency_code}} {{record.avaya_list_price}}</div>
+      <div class="mat-cells">{{record.quoteSubStatusName}}</div>
+      <div class="mat-cells">{{record.is_promotion_applied}}</div>
+      <div class="mat-cells" *ngIf="(record.quote_sub_status == '5' || record.quote_sub_status == '7')" style="color: green">IN</div>
+      <div class="mat-cells" *ngIf="record.quote_sub_status == '6'" style="color: red">OUT</div>
+            <!-- <div class="mat-cells" *ngIf="record.quote_sub_status != '5' && record.quote_sub_status != '6' && record.quote_sub_status != '7'"></div> -->
+    </div>
+  </div></div>
+</div>
+<mat-dialog-content class="dialog-content">
+  <div>
+    <p class="upload_Document_title" style="margin-bottom: 5px;">Upload PO Document</p>
+  </div>
+  <div>
+    <mat-form-field style="width: 240px;">
+      <mat-label>Select Upload Type</mat-label>
+      <mat-select [(ngModel)]="selectUploadtype" required>
+        <mat-option *ngFor="let type of uploadType" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="file" style="display:none;" id="browsefile" (change)="onChange($event)"
+      required/>
+    <button type="button" class="btn btn-sm btn-primary button-browse" id="secondary"
+      (click)="btnclickedBrowse()">Browse</button>
+    <button *ngIf="!uploadButton" type="button" class="btn btn-sm btn-primary button-upload" (click)="uploadBtn()"
+      id="colorBtnRed">Upload</button>
+    <span class="" *ngIf="fileName!==''" [ngClass]="{ 'invalid_file':!fileFormatError}"
+      style="padding: 5px 15px; margin-bottom: 15px;">
+      <span id="fileAttached"> <i class="fa fa-paperclip"></i> {{fileName}} </span>
+      <span *ngIf="!fileFormatError" style="padding-left: 15px;"> {{fileFormatErrorMassage}} </span>
+    </span>
+    <p *ngIf="!uploadButton" style="color:red;padding-left:600px;margin-top:-2%;">Please UPLOAD PO Document before
+      clicking SUBMIT</p>
+  </div>
+
+  <div class="po_formfields">
+      <mat-form-field class="example-full-width" *ngIf="POFiledsRequired == 'Y'">
+          <input matInput placeholder="Enter PO Number" [(ngModel)]="selectedPoNumber" 
+            required maxlength="20">
+            </mat-form-field>
+       <!-- <mat-form-field class="example-full-width" *ngIf="POFiledsRequired == 'N'">
+             <input matInput placeholder="Enter PO Number" [(ngModel)]="selectedPoNumbers" maxlength="20">
+        </mat-form-field> -->
+        <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter PO Amount" [(ngModel)]="selectedPoAmount" (keypress)="numberOnly($event)"
+        required>
+      <span *ngIf="selectedPoAmount !== '' && selectedPoAmount < quote_price" style="color:red;">
+        PO amount should be equal to or greater than price!!</span>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>PO Expiry Date:</mat-label>
+      <input matInput [(ngModel)]="selectedDate" style="color:#696969;" [readonly]="isReadOnly">
+      <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker> -->
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-footer">
+  <div class="table-accordion">
+    <div class="accordion-col3">
+      <button class="btn btn-secondary button-cancel" (click)="Cancel()">Cancel</button>
+      <button class="btn btn-secondary button-ok" [disabled]="checkAllField() || uploadeDone"
+        (click)="submit()">Submit</button>
+      <!-- <button class="btn btn-secondary button-ok" [disabled]="checkAllField()" (click)="submit()">Submit</button> -->
+    </div>
+  </div>
+</mat-dialog-actions>

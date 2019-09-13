@@ -1,0 +1,186 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<h2 style="font-weight:1000;text-align:center;margin-top:1.5%;">AutoRenew Details </h2>
+
+
+<a (click)="gotoDashboard()" style="font-size: 15px;cursor: pointer; margin-top:2%;margin-left:83%;color:green;">
+  <i class="fa fa-arrow-circle-left" style="color:green;"></i> AutoRenew Dashboard
+</a>
+<div class="row">
+  <div class="col-md-5">
+    <div class="row">
+      <div class="col-md-5" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">AutoRenew Id:</label>
+      </div>
+      <div class="col-md-5" style="width: 70%;font-size:15px;">
+        {{autorenewId}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">M Date:</label>
+      </div>
+      <div class="col-md-5" style="width:70%;font-size:15px;">
+        {{mDate|date: globalDateFormat.dateformat}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">Last Notification:</label>
+      </div>
+      <div class="col-md-5" style="width: 50%;font-size:15px;">
+        {{LastNotification | datex:'DD-MMM-YYYY'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">Status:</label>
+      </div>
+      <div class="col-md-5" style="width: 50%;font-size:15x;">
+        {{status_name}}
+      </div>
+    </div>
+    <!-- <div class="row" *ngIf="promiseDate != null && !promiseDateflag"> -->
+        <div class="row" *ngIf="displayPromiseDate && promiseDate != null && !promiseDateflag"> 
+      <div class="col-md-5" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">Promise Date:</label>
+      </div>
+      <div class="col-md-5" style="width: 50%;font-size:15x;">
+        {{promiseDate | datex:'DD-MMM-YYYY'}}
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-4" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">Tier1:</label>
+      </div>
+      <div class="col-md-5" style="width:70%;font-size:15px;" [innerHTML]="tier1">
+           </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">Tier2:</label>
+      </div>
+      <div class="col-md-5" style="width:70%;font-size:15px;"[innerHTML]="tier2" >
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" style="width: 35%;">
+        <label style="font-weight:bold;font-size:15px;">Tier:</label>
+      </div>
+      <div class="col-md-5" style="width:70%;font-size:15px;">
+        {{tier}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" style="width: 35%;"><label style="font-weight:bold;font-size:15px;">Payer:</label></div>
+      <div class="col-md-5" style="width: 50%;font-size:15x;" *ngIf="result.new_payer == null">{{result.payer}}</div>
+      <div class="col-md-5" style="width: 50%;font-size:15x;" *ngIf="result.new_payer != null">{{result.new_payer}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3" style="text-align: center" *ngIf="tierNameType == 'T1' || tierNameType == null">
+    <!-- ***PO Submit && PO Promise** !-->
+    <span *ngIf="status == '2' || status == '3' || status == '7'">
+      <span *ngIf="promiseflags && poSubmitVisible == 'Y'">
+        <mat-icon class="example-tab-icon" style="color:grey"
+          title="You can no longer po-submit of this renewal as the renewal date has passed.">check</mat-icon>
+      </span>
+      <span *ngIf="!promiseflags && poSubmitVisible == 'Y'">
+        <mat-icon class="example-tab-icon" title="PO Submit" (click)="posubmitDialog()">check</mat-icon>
+      </span>
+      <span *ngIf="promiseflags">
+        <mat-icon class="example-tab-icon" style="color:grey"
+          title="You can no longer po-promise of this renewal as the renewal date has passed.">all_inclusive</mat-icon>
+      </span>
+      <span *ngIf="!promiseflags">
+        <mat-icon class="example-tab-icon" title="PO Promise" (click)="masterpopromiseDialog()">all_inclusive</mat-icon>
+      </span>
+    </span>
+    <!-- Change Payer-->
+    <span *ngIf="status == '2' || status == '3'  || status == '6' || status == '7'">
+      <span *ngIf="promiseflags">
+        <mat-icon class="example-tab-icon" style="color:grey"
+          title="You can no longer payer of this renewal as the renewal date has passed.">monetization_on</mat-icon>
+      </span>
+      <span *ngIf="!promiseflags">
+        <mat-icon class="example-tab-icon" title="Payer" (click)="changepayerDialog()">monetization_on</mat-icon>
+      </span>
+    </span>
+    <!-- *** opt-in** !-->
+    <span *ngIf="(status == '2' || status == '6') ? true : false ">
+      <span *ngIf="promiseflags">
+        <mat-icon class="example-tab-icon" style="color:gray"
+          title="You can no longer opt-in of this renewal as the renewal date has passed.">build</mat-icon>
+      </span>
+      <span *ngIf="!promiseflags">
+        <mat-icon class="example-tab-icon" title="OPT IN" (click)="optinDialog(element)">build</mat-icon>
+      </span>
+    </span>
+    <!-- ***OPT OUT** !-->
+    <span *ngIf="status == '2' || status == '3' || status == '7'">
+      <span *ngIf="Freezedateflags">
+        <i class="fa fa-chain-broken example-tab-icon" style="color:gray"
+          title="You can no longer opt-out of this renewal as the renewal date has passed."></i>
+      </span>
+      <span *ngIf="!Freezedateflags">
+        <i title="OPT OUT" class="fa fa-chain-broken example-tab-icon" (click)="optoutDialog()" aria-hidden="true"></i>
+      </span>
+    </span>
+  </div>
+  <!-- Reseller Icon Visibility-->
+  <div class="col-md-3" style="text-align: center" *ngIf="tierNameType =='T2'">
+    <!--  Reseller Submit-->
+    <span *ngIf="status == '2' || status == '3' || status == '7'">
+      <span *ngIf="promiseflags && poSubmitVisible == 'Y'">
+        <mat-icon class="example-tab-icon" style="color:grey"
+          title="You can no longer po-submit of this renewal as the renewal date has passed.">check</mat-icon>
+      </span>
+      <span *ngIf="!promiseflags && poSubmitVisible == 'Y'">
+        <mat-icon class="example-tab-icon" title="PO Submit" (click)="resellerposubmitDialog()">check</mat-icon>
+      </span></span>
+       <!--  Reseller OptOut-->
+      <span *ngIf="status == '2' || status == '3' || status == '7'">
+        <span *ngIf="Freezedateflags">
+          <i class="fa fa-chain-broken example-tab-icon" style="color:gray"
+            title="You can no longer opt-out of this renewal as the renewal date has passed."></i>
+        </span>
+        <span *ngIf="!Freezedateflags">
+          <i title="OPT OUT" class="fa fa-chain-broken example-tab-icon" (click)="resellerOptoutDialog()" aria-hidden="true"></i>
+        </span>
+      </span>
+      <!--Reseller OptIn-->
+      <span class="subrow_optIn" *ngIf="(status == '2' || status == '6') ? true : false " >
+        <span *ngIf="promiseflags">
+          <mat-icon class="example-tab-icon" style="color:gray"
+            title="You can no longer opt-in of this renewal as the renewal date has passed.">build</mat-icon>
+        </span>
+        <span *ngIf="!promiseflags">
+          <mat-icon class="example-tab-icon" title="OPT IN" (click)="resellerOptinDialog(element)">build</mat-icon>
+        </span>
+      </span>
+    </div>
+</div>
+
+<div class="dashboard-tabs">
+  <ul class="tablist">
+    <li routerLinkActive="selected" (click)="sendMessage()" [routerLink]="['requestdetails']">
+      Request Details </li>
+    <li routerLinkActive="selected" (click)="sendMessage()" [routerLink]="['contactdetails']">
+      Contact Details </li>
+    <li routerLinkActive="selected" (click)="sendMessage()" [routerLink]="['notification']">
+      Notifications</li>
+    <li routerLinkActive="selected" (click)="sendMessage()" [routerLink]="['podetailsTab']">
+      PO Details </li>
+    <li routerLinkActive="selected" (click)="sendMessage()" [routerLink]="['auditdetails']">
+      Audit Details</li>
+      <li routerLinkActive="selected" (click)="sendMessage()" [routerLink]="['Ordercenter']">
+        Order Center Details</li>
+  </ul>
+</div>
+<!-- <app-requestdetails (click)="sendMessage()"></app-requestdetails> -->
+<router-outlet></router-outlet>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="250px" viewBox="0 0 125 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>solution-circle-red-slash</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="125" cy="125" r="125"></circle>
+    </defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="solution-circle-red-slash" transform="translate(-125.000000, 0.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group-82" mask="url(#mask-2)" fill="#DA291C" fill-rule="nonzero">
+                <g transform="translate(125.000000, -111.000000)" id="Combined-Shape">
+                    <path d="M0,110.908117 L110.539996,0.368120907 L129.631879,19.460004 L0,149.091883 L0,110.908117 Z"></path>
+                    <path d="M1.42108547e-14,184.908117 L130.539996,54.3681209 L149.631879,73.460004 L0,223.091883 L0,184.908117 Z"></path>
+                    <path d="M0,258.908117 L150.539996,108.368121 L169.631879,127.460004 L0,297.091883 L0,258.908117 Z"></path>
+                    <path d="M0,332.908117 L170.539996,162.368121 L189.631879,181.460004 L-2.84217094e-14,371.091883 L0,332.908117 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

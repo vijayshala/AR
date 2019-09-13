@@ -1,0 +1,43 @@
+
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css";
+
+table {
+    width: 100%;
+  }
+  td,tr{
+      font-size:13px;
+  }
+
+  td, th {
+    width: 15%;
+    padding-top: 11px!important;
+  }
+  
+  .mat-header-cell {
+    padding-bottom: 0px!important;
+    font-size: 14px!important;
+    font-weight: 500;
+  }
+  .matTableHeader, .matTableCell{
+    flex: 0 0 100px;
+    white-space: nowrap;
+  }
+  .basic-container {
+    padding: 30px;
+  }
+  .example-container{
+    border: 2px solid #e5dcdc;
+   // border-bottom: 10px solid lightblue;
+   border-bottom: 6px solid  #a3cae9;
+  }
+  
+  ::ng-deep .modal-dialog {
+    max-width: 100%;
+  }
+
+  .modal-body{
+    height: 100%;
+    overflow-y: auto;
+  }

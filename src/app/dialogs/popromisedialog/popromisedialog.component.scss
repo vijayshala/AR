@@ -1,0 +1,99 @@
+
+@import '../dialogs.component.scss';
+
+// .mat-toolbar {
+//     display: inherit;
+//     box-sizing: border-box;
+//     padding: 0 28% 1px;
+//     width: 100%;
+//     flex-direction: row;
+//     align-items: baseline;
+//     white-space: nowrap;
+// }
+// .btn.btn-primary {
+//     background: #da291c;
+//     color: #fff;
+//     border: 0 solid #da291c;
+//     border-radius: 0;
+//     padding: 1px 15px 1px;
+//     cursor: pointer;
+//     outline: 0;
+//     position: relative;
+//     z-index: 1;
+//     overflow: hidden;
+//     transition: all .3s;
+//     font-weight: 400
+// }
+
+
+// .table-accordion {
+//     padding: 10px 0 0 0;
+//     display: grid;
+//     display: -ms-grid;
+//     grid-gap: 10px;
+//     border-top: 1px solid lightgrey;
+//   }
+  
+//   .mat-tables {
+//       display: block;
+//   }
+  
+//   .mat-rows,
+//   .mat-header-rows {
+//       display: flex;
+//       border-bottom-width: 1px;
+//       border-bottom-style: ridge;
+//       align-items: center;
+//       min-height: 48px;
+//       padding: 0 24px;
+//       font-size: 13px;
+//   }
+    
+//     .mat-header-rows {
+//       // box-shadow: 0 5px 3px -3px #b0b0b0;
+//       background: #f6f6f6;
+//       color: #3f3f3f;
+//      }
+    
+//     .mat-cells,
+//     .mat-header-cells {
+//       flex: 1;
+//       overflow: hidden;
+//       word-wrap: break-word;
+//     }
+  
+//     /deep/ .mat-dialog-container {
+//       padding: 0 !important;
+//       border-radius: 0!important;
+//     }
+    
+    
+//     /deep/ .cdk-overlay-pane{
+//       width: 80%!important;
+//     }
+//     /deep/ .cdk-overlay-connected-position-bounding-box > .cdk-overlay-pane {
+//       width: 200px!important;
+//     }
+    
+//     /deep/ .mat-select-panel-wrap {
+//       max-width: 100px;
+//       margin-left: 40px;
+//     }
+    
+//     .quotes_title {
+//       border-bottom: 3px solid #da291c;
+//         width: 95px;
+//         font-weight: 500;
+//         font-size: 15px;
+//     }
+  
+//     .po_formfields > mat-form-field {
+//         margin-right: 20px;
+//         width: 240px;
+//     }
+
+//Snack bar Css
+
+::ng-deep .warning{
+    background:black!important;
+   }

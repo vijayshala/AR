@@ -1,0 +1,27 @@
+.loadingMessage {
+    background: #fff url(/assets/images/process.gif) no-repeat scroll 0 0/78px 80px;
+    border-radius: 50px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+    color: #333333;
+    left: 47.5%;
+    opacity: 1;
+    padding: 44px 0 11px 73px;
+    position: absolute;
+    top: 37%;
+    z-index: 1000;
+}
+
+#loader-overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    display: block;
+    padding: 15px 0 15px 45px;
+    background-color: #666666;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+    opacity: 0.8;
+}

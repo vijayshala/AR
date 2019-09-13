@@ -1,0 +1,57 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+
+<!-- <div class="mainbox"> -->
+<div class="col-md-12" style="margin-top:1%;">
+  <label>Payer:<br>
+    <div *ngIf="Contactdetails.new_payer != null" class="payerdiv">
+      <input class="form-control textinput" [disabled]="is_RESELLER == 'Y' || status =='Order Submitted'"
+        [(ngModel)]="Contactdetails.new_payer" type='text' id='name' readonly />
+    </div>
+    <div *ngIf="Contactdetails.new_payer == null" class="payerdiv">
+      <input class="form-control textinput" [disabled]="is_RESELLER == 'Y'  || status =='Order Submitted'"
+        [(ngModel)]="Contactdetails.payer_id" type='text' id='name' readonly />
+    </div>
+  </label>
+
+
+  <label style="margin-left:5%;">Phone:<br>
+    <input type='text' [disabled]="this.is_RESELLER == 'Y'  || status =='Order Submitted'"
+      class="form-control textinput" [(ngModel)]="Contactdetails.phone_no" /> <button class="btn btn-sm"
+      style="background-color: transparent;font-size:14px;">
+      <!-- <b style="color:orangered">Edit Phone</b> -->
+    </button>
+  </label>
+
+
+  <label style="margin-left:5%;">Contact Person:<br>
+    <input class="form-control textinput" [disabled]="is_RESELLER == 'Y'  || status =='Order Submitted'"
+      [(ngModel)]="Contactdetails.contact_no" readonly type='text' />
+
+  </label>
+
+
+  <label style="margin-left:5%;">Email:<br>
+    <span *ngFor="let i of Contactdetails.emails; trackBy:trackByFn;let ind=index" style="display: block;">
+      <input class="form-control textinput" type='text' [disabled]="is_RESELLER == 'Y' || status =='Order Submitted'"
+        [(ngModel)]="Contactdetails.emails[ind]" style="margin-bottom:2%; display: inline; width: 200px;" />
+      <button *ngIf="is_RESELLER == 'N'" class="btn btn-secondary" (click)="deleteOption(ind)"
+        style="background-color: transparent; font-size:14px; margin-bottom: 2%; margin-left: 15px;"> Remove </button>
+    </span>
+
+    <button *ngIf="is_RESELLER == 'N'" class="btn btn-secondary" [disabled]="status =='Order Submitted'" (click)=add()
+      style="background-color: transparent;font-size:14px;"> Add Email
+    </button>
+    <span style="padding-left: 15px; color: red; font-weight: bold;">{{errorFlag}}</span>
+
+  </label>
+</div>
+<br><br><br><br>
+<!-- <button *ngIf="is_RESELLER=='N'" [disabled]=" status=='Order Submitted' && checkValidation()" class=" btn btn-secondary"
+  style="margin-left:75%;" (click)="save()">Save</button> -->
+<button *ngIf="is_RESELLER=='N'" [disabled]="status=='Order Submitted' || checkValidation()" class=" btn btn-secondary" style="margin-left:75%;"
+  (click)="save()">Save</button>
+<button *ngIf="is_RESELLER=='N'" [disabled]=" status=='Order Submitted'" class=" btn btn-secondary"
+  style="margin-left:10px;" (click)="cancel()">Cancel</button>
+<!-- </div> -->

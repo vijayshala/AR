@@ -1,0 +1,136 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <h2 class="heading">AutoRenew Dashboard</h2>
+  </div>
+  <div class="col-md-6">
+    <button *ngIf="isProfileActive" (click)="viewProfile()" style="float:right;border:none;background:none;">
+      <mat-icon style="font-size: 31px" class="example-tab-icon optouticon" title="Profile">account_circle</mat-icon>
+    </button>
+    <button *ngIf="chases && chases.chaseList" [disabled]="chases.chaseList.length == 0" (click)="exportAllData()"
+      style="float: right;border: none;background: none;">
+      <mat-icon style="font-size: 31px" class="example-tab-icon optouticon" title="Export">
+        file_download</mat-icon>
+    </button>
+    <!-- <mat-icon class="example-tab-icon optouticon" matTooltip="OPT OUT" (click)="masteroptoutDialog()">all_out</mat-icon>  -->
+  </div>
+</div>
+
+<div class="container-fluid">
+<div class="row" style="margin-bottom: 15px;">
+  <div class="col-md-4  col-xs-5" style="padding-left: 0;">
+
+    <div class="dashboard-tabs">
+      <ul class="tablist" style="margin-top: 30px">
+        <li routerLinkActive="selected" (click)="activatedRoute('/autorenewdashboard')"
+          [routerLink]="['/autorenewdashboard']">Order Pending</li>
+        <li routerLinkActive="selected" (click)="activatedRoute('/orderhistory')" [routerLink]="['/orderhistory']">
+          Ordered</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-2" style="padding-top: 28px; padding-left: 0;">
+ <select #reasonCode class="form-control" [(ngModel)]="dynamicFilterValue" style="border-radius: 0;"
+        (ngModelChange)="genrateFilter()">
+
+        <option *ngFor="let item of ['Contract End Date' , 'Tier1 Link Id' , 'Tier2 Link Id']" value="{{item}}">{{item}}
+        </option>
+
+      </select>
+
+    </div>
+
+       <div class="col-md-3" style="padding-left: 0;">
+
+      <div *ngIf="activeDateFilter">
+
+        <label for="exampleInputEmail1" class="lables">Search with Contract End Date
+        </label>
+
+        <div class="input-group">
+
+          <input bsDaterangepicker class="form-control" placeholder="From - To" style="border-radius:4px;"
+            [(ngModel)]="bsRangeValue" (ngModelChange)="dateValidation(bsRangeValue)"  [bsConfig]="{ rangeInputFormat: 'DD-MMM-YYYY' }" type="text">
+
+          <span class="input-group-btn">
+            <button class="btn btn-primary" [disabled]="bsRangeValue == null || disableDateFilter" (click)="filter('dateRangeSearch')">Filter</button>
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div *ngIf="activeT1LinkFilter">
+
+        <label for="exampleInputEmail1" class="lables">Search with Tier1 Link Id
+        </label>
+
+        <div class="input-group">
+
+          <input class="form-control" type="text" placeholder="SEARCH HERE" email="search" (keypress)="numberOnly($event)"
+            [(ngModel)]="t1linkIdSearchValue">
+
+          <span class="input-group-btn" style="margin-right: 1px;">
+
+            <button class="btn btn-primary" matTooltip="search" [disabled]=" t1linkIdSearchValue == null" (click)="filter('t1LinkSearch')"><i
+                class="fa fa-search"></i></button>
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div *ngIf="activeT2LinkFilter">
+
+        <label for="exampleInputEmail1" class="lables">Search with Tier2 Link Id</label>
+
+        <div class="input-group">
+
+          <input class="form-control" type="text" placeholder="SEARCH HERE" email="search" (keypress)="numberOnly($event)"
+            [(ngModel)]="t2linkIdSearchValue">
+
+          <span class="input-group-btn" style="margin-right: 1px;">
+
+            <button class="btn btn-primary" matTooltip="search"  [disabled]="t2linkIdSearchValue == null" (click)="filter('t2LinkSearch')"><i
+                class="fa fa-search"></i></button>
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-3 " style="padding-left: 0; padding-right: 0;">
+
+      <label for="exampleInputEmail1" class="lables"></label>
+
+      <div class="input-group">
+
+        <input class="form-control" type="text" placeholder="SEARCH HERE" email="search" [(ngModel)]="searchTerm">
+
+        <span class="input-group-btn" style="margin-right: 1px;">
+
+          <button class="btn btn-primary" matTooltip="search" [disabled]="searchTerm == null" (click)="searchtext()"><i
+              class="fa fa-search"></i></button>
+
+        </span>
+
+        <span class="input-group-btn">
+
+          <button class="btn btn-primary" title="Clear Search" (click)="Reset()" style="margin-left: 5px;">Clear</button>
+
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<app-orderdetails></app-orderdetails>

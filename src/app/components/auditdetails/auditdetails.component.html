@@ -1,0 +1,39 @@
+<div class="example-container" style="margin-top:3%;">
+  <mat-table #table [dataSource]="auditMessage" class="mat-elevation-z8">
+    
+    <ng-container matColumnDef="quote_id">
+      <mat-header-cell *matHeaderCellDef> Quote ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"><div class="quote_ellipsis" matTooltipClass="quote-tooltip" matTooltip="{{element.quote_id}}" matTooltipClass="quote-tooltip"> {{element.quote_id}}
+        </div> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.action}} </mat-cell>
+        </ng-container>
+
+
+    <ng-container matColumnDef="updated_on">
+      <mat-header-cell *matHeaderCellDef>Updated On </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.updated_on | datex:'DD-MMM-YYYY'}} {{element.updated_on|datex:'HH:mm'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="updated_by">
+      <mat-header-cell *matHeaderCellDef> Updated By </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.updated_by}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef> Reason </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <div class="cell-data" matTooltip="{{element.reason}}" matTooltipClass="quote-tooltip">{{element.reason}}
+          </div> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="comments">
+      <mat-header-cell *matHeaderCellDef> Comments </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="cell-data" matTooltip="{{element.comments}}" matTooltipClass="quote-tooltip" [innerHTML]="element.comments"></div></mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

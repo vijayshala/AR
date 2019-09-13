@@ -1,0 +1,173 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+
+<h2 class="dialog-title" mat-dialog-title mat-dialog-draggable-title>PO Submit</h2>
+<mat-dialog-content class="dialog-content">
+  <div class="mat-tables" style="border: 1px solid #b0b0b0;">
+    <div class="mat-header-rows">
+      <div class="mat-header-cells">Select</div>
+      <div class="mat-header-cells">Autorenew ID</div>
+      <div class="mat-header-cells">Tier1</div>
+      <div class="mat-header-cells">Tier2</div>
+      <div class="mat-header-cells">Payer</div>
+      <div class="mat-header-cells" style="flex: 1.5!important">Last Notification Date</div>
+      <div class="mat-header-cells">Modified Date</div>
+      <div class="mat-header-cells">Total</div>
+      <div class="mat-header-cells" style="flex: 0.2!important"></div>
+    </div>
+    <div *ngFor="let records of allItems; let index=index">
+      <div class="mat-rows">
+        <div class="mat-cells">
+          <mat-checkbox type="checkbox" [(ngModel)]="selectAllFlag" (change)="selectAll($event.checked)">
+          </mat-checkbox>
+        </div>
+        <div class="mat-cells">{{data.autorenew_id}}</div>
+        <div class="mat-cells"  [innerHTML]="tier1"></div>
+        <div class="mat-cells"  [innerHTML]="tier2"></div>
+        <div *ngIf="data.new_payer == null" class="mat-cells" [innerHTML]="data.payer"></div>
+        <div *ngIf="data.new_payer != null" class="mat-cells" [innerHTML]="data.new_payer"></div>
+        <div class="mat-cells" style="flex: 1.5!important">{{data.previous_reminder_date|date: globalDateFormat.dateformat}}</div>
+        <div class="mat-cells">{{data.updatedOn|date: globalDateFormat.dateformat}}</div>
+        <div class="mat-cells" *ngIf="!isDistiFlag">{{data.currency_code}} {{data.sum_OF_avaya_net_price}}</div>
+        <div class="mat-cells" *ngIf="isDistiFlag">{{data.currency_code}} {{data.sum_OF_total_contract_value}}</div>
+        <div class="mat-cells" style="flex: 0.2!important">
+          <div class="center" *ngIf="isCollapsed[index]"
+            (click)="isCollapsed[index] = !isCollapsed[index]; quotesList(data.autorenew_id)"
+            [attr.aria-expanded]="isCollapsed[index]" [attr.aria-controls]="'collapseViewMore-' + index">
+            <i class="material-icons" style="color: red;cursor: pointer">add</i>
+          </div>
+          <div class="center" *ngIf="!isCollapsed[index]" (click)="isCollapsed[index] = !isCollapsed[index]">
+            <i class="material-icons" style="color: red;cursor: pointer">remove</i>
+          </div>
+        </div>
+      </div>
+      <div [id]="'collapseViewMore-' + index" [collapse]="isCollapsed[index]">
+        <div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+          <p class="quotes_title" style="margin-bottom: 5px;">Quotes Details</p>
+          <div class="mat-tables_quotes" style="border: 1px solid #b0b0b0;">
+            <div class="mat-header-rows"
+              style="min-height: 30px; color: #000000; border-bottom: 1px solid #b4b4b4; background: #f6f6f6;">
+              <div class="mat-header-cells">Select</div>
+              <div class="mat-header-cells">Quote ID</div>
+              <div class="mat-header-cells">Contract Number</div>
+              <div class="mat-header-cells">Contract Expiry Date</div>
+              <div class="mat-header-cells">Quote Price</div>
+	            <div class="mat-header-cells">Quote Status</div>
+              <div class="mat-header-cells">Include Promotion</div>
+              <div class="mat-header-cells"  *ngIf="optOutFlag">Opt In/Out</div>
+              <div class="mat-header-cells" *ngIf="optInFlag" >Opt In/Out</div>
+              <div class="mat-header-cells" *ngIf="!optOutFlag && !optInFlag">Opt In/Out</div>
+              <div class="mat-header-cells" *ngIf= "isDistiFlag">Reseller Po Value</div>
+              <div class="mat-header-cells" *ngIf= "isDistiFlag">Reseller PO Amount</div>
+              <div class="mat-header-cells" *ngIf= "isDistiFlag">Reseller PO Document</div>
+
+            </div>
+            <div *ngFor="let record of quoteDetails; let index=index">
+              <div class="mat-rows" [ngClass]="{ 'ineligible-row': record.is_eligible === 'N'}">
+                <div class="mat-cells">
+                  <!-- <mat-checkbox [(ngModel)]="record.checked"
+                    [disabled]="record.is_eligible === 'N' || record.quote_sub_status == '6' || record.quote_sub_status == '4' || record.quote_sub_status == '8'"
+                    (change)="onChangeCheckbox(record.parent_qrn, $event.checked,record)"
+                    [aria-label]="checkboxLabel(row)" matTooltip="This Quote is not Eligible"
+                    [matTooltipDisabled]="record.is_eligible === 'Y'">
+                  </mat-checkbox> -->
+                  <mat-checkbox [(ngModel)]="record.checked"
+                    [disabled]="quoteCheckBoxDisable(record.is_eligible, record.quote_sub_status )"
+                    (change)="onChangeCheckbox(record.parent_qrn, $event.checked,record)"
+                    [aria-label]="checkboxLabel(row)" matTooltip="This Quote is not Eligible"
+                    [matTooltipDisabled]="record.is_eligible === 'Y'">
+                  </mat-checkbox>
+                </div>
+                <div class="mat-cells">{{record.parent_QUOTE_ID}}</div>
+                <div class="mat-cells">{{record.expiring_contractnumber}}</div>
+                <div class="mat-cells">{{record.contract_expiry_date|date: globalDateFormat.dateformat}}</div>
+                <div class="mat-cells">{{record.currency_code}} {{record.avaya_net_price}}</div>
+                <div class="mat-cells">{{record.quoteSubStatusName}}</div>
+                <div class="mat-cells">{{record.is_promotion_applied}}</div>
+                <div class="mat-cells" *ngIf="optOutFlag">IN</div>
+                <div class="mat-cells" *ngIf="optInFlag" style="color: red">OUT</div>
+                <div class="mat-cells" *ngIf="!optOutFlag && !optInFlag"></div>
+                <div class="mat-cells"  *ngIf= "isDistiFlag">{{record.res_po_number}}</div>
+                 <div class="mat-cells"  *ngIf= "isDistiFlag">{{record.res_po_amount}}</div>
+                 <div class="mat-cells"  *ngIf="isDistiFlag">
+                    <div>
+                        <button mat-icon-button style="font-size: 21px" style="background: none" [disabled]="record.res_owcc_id == null || record.res_owcc_id == '0'" class="example-tab-icon optouticon" title="Download" 
+                        (click)="poDocumentDownload(record.res_owcc_id)"><mat-icon>file_download</mat-icon></button>
+                  </div>
+                <!-- <div class="mat-cells" *ngIf="record.quote_sub_status != '5' && record.quote_sub_status != '6' && record.quote_sub_status != '7'"></div> -->
+              </div>
+                <!-- <div class="mat-cells" *ngIf="record.quote_sub_status != '5' && record.quote_sub_status != '6' && record.quote_sub_status != '7'"></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-content class="dialog-content">
+  <div>
+    <p class="upload_Document_title" style="margin-bottom: 5px;">Upload PO Document</p>
+  </div>
+  <div>
+    <mat-form-field style="width: 240px;">
+      <mat-label>Select Upload Type</mat-label>
+      <mat-select [(ngModel)]="selectUploadtype" [required]="POFiledsRequired == 'Y'">
+        <mat-option *ngFor="let type of uploadType" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="file" style="display:none;" id="browsefile" [required]="POFiledsRequired == 'Y'"
+      (change)="onChange($event)" />
+    <button type="button" class="btn btn-sm btn-primary button-browse" id="secondary"
+      (click)="btnclickedBrowse()">Browse</button>
+    <button *ngIf="!uploadButton" type="button" class="btn btn-sm btn-primary button-upload" (click)="uploadBtn()"
+      id="colorBtnRed">Upload</button>
+    <span class="" *ngIf="fileName!==''" [ngClass]="{ 'invalid_file':!fileFormatError}"
+      style="padding: 5px 15px; margin-bottom: 15px;">
+      <span id="fileAttached"> <i class="fa fa-paperclip"></i> {{fileName}} </span>
+      <span *ngIf="!fileFormatError" style="padding-left: 15px;"> {{fileFormatErrorMassage}} </span>
+      <p *ngIf="!uploadButton" style="color:red;padding-left:600px;margin-top:-2%;">Please UPLOAD PO Document before
+        clicking SUBMIT</p>
+    </span>
+  </div>
+
+  <div class="po_formfields">
+    <mat-form-field class="example-full-width" *ngIf="POFiledsRequired == 'Y'">
+       <input matInput placeholder="Enter PO Number" [(ngModel)]="selectedPoNumber" 
+         [required]="POFiledsRequired == 'Y'" maxlength="20">
+         </mat-form-field>
+    <mat-form-field class="example-full-width" *ngIf="POFiledsRequired == 'N'">
+          <input matInput placeholder="Enter PO Number" [(ngModel)]="selectedPoNumbers" maxlength="20">
+     </mat-form-field>
+    
+    
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter PO Amount" (keypress)="numberOnly($event)" [(ngModel)]="selectedPoAmount"
+        [required]="POFiledsRequired == 'Y'">
+      <span *ngIf="selectedPoAmount !== '' && totalquotes_price > selectedPoAmount"
+        style="color: red;font-size:10px;">PO amount should be equal to or greater than price!!</span>
+    </mat-form-field>
+    <!-- <mat-form-field>
+      <input matInput [matDatepicker]="picker"  placeholder="Choose PO Expiry Date" [min]="minDate"
+        [(ngModel)]="selectedDate" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+    <mat-form-field class="example-full-width">
+        <mat-label>PO Expiry Date:</mat-label>
+      <input matInput [(ngModel)]="selectedDate" style="color:#696969;cursor: no-drop" disabled>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-footer">
+  <div class="table-accordion">
+    <div class="accordion-col3">
+      <button class="btn btn-secondary button-cancel" (click)="Cancel()">Cancel</button>
+      <button class="btn btn-secondary button-ok" [disabled]="checkAllField() || uploadeDone"
+        (click)="submit()">Submit</button>
+      <!-- <button class="btn btn-secondary button-ok" [disabled]="checkAllField()" (click)="submit()">Submit</button> -->
+    </div>
+  </div>
+  <!-- || !selectAllFlag  -->
+</mat-dialog-actions>

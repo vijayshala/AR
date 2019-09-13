@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="18.977" viewBox="0 0 15 18.977">
+  <g id="rubbish-bin" transform="translate(-81.133 0)">
+    <g id="Group_25" data-name="Group 25" transform="translate(81.133)">
+      <path id="Path_1" data-name="Path 1" d="M94.839,2.235H92.305V.588a.589.589,0,0,0-.6-.588.089.089,0,0,0-.064.021A.082.082,0,0,0,91.6,0H85.559a.58.58,0,0,0-.588.588V2.235H82.427a1.278,1.278,0,0,0-1.294,1.294V5.645h1.123V17.694a1.26,1.26,0,0,0,1.283,1.283H93.727a1.269,1.269,0,0,0,1.294-1.283V5.645h1.112V3.528A1.278,1.278,0,0,0,94.839,2.235ZM86.147,1.176h4.972V2.235H86.147Zm7.687,16.518c0,.075-.032.107-.107.107H83.539c-.075,0-.107-.032-.107-.107V5.645h10.4ZM94.946,4.469H82.32V3.528c0-.075.032-.118.107-.118H94.839c.075,0,.107.043.107.118Z" transform="translate(-81.133)" fill="#da291c"/>
+      <rect id="Rectangle_5" data-name="Rectangle 5" width="0.987" height="8.094" transform="translate(9.794 9.033)" fill="#da291c"/>
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="0.987" height="8.094" transform="translate(7.017 9.033)" fill="#da291c"/>
+      <rect id="Rectangle_7" data-name="Rectangle 7" width="0.987" height="8.094" transform="translate(4.241 9.033)" fill="#da291c"/>
+    </g>
+  </g>
+</svg>

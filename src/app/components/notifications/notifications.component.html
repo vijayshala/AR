@@ -1,0 +1,108 @@
+
+<h4 style="font-weight:800;margin-left:1%;margin-top:1%;">
+  <a style="color:blue;font-size:16px;" (click)="summaryStatement()">Summary Statement</a></h4>
+<div class="row" style="margin-top:1%;">
+  <div class="col-md-6">
+    <div class="example-container" style="margin-top: 32px;">
+      <h4 style="font-weight:800;text-align:center;">Emails Sent</h4>
+      <hr>
+      <table mat-table [dataSource]="EmailSentList">
+
+
+        <ng-container matColumnDef="event">
+          <th mat-header-cell *matHeaderCellDef> Event </th>
+          <td mat-cell *matCellDef="let element"> {{element.event}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email_date">
+          <th mat-header-cell *matHeaderCellDef>Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.email_date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="view_email">
+          <th mat-header-cell *matHeaderCellDef>View Email </th>
+          <td mat-cell *matCellDef="let element"> <a style="color:blue;"
+              (click)="viewMail(template, element.notificationMessage)">View</a> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email_sent">
+          <th mat-header-cell *matHeaderCellDef> Email Sent </th>
+          <td mat-cell *matCellDef="let element"><a style="color:blue;"> {{element.email_sent}}</a> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="email_read_at">
+          <th mat-header-cell *matHeaderCellDef> Email Read Time</th>
+          <td mat-cell *matCellDef="let element"> {{element.email_read_at}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <!-- <h4>Upcoming Events</h4> -->
+    <p *ngIf="!errorFlag" style="margin-bottom: 5px; font-size: 14px; color: red;">If a quote is OptedOut, no
+      notification will be sent out.</p>
+    <span *ngIf="errorFlag" style="margin-bottom: 5px; font-size: 14px; color: red;">No notification will be sent if
+      AutoRenew id is cancelled</span>
+    <div class="example-container" style="margin-top:0%;">
+      <h4 style="font-weight:800;text-align:center;">Upcoming Events</h4>
+      <hr>
+      <table mat-table [dataSource]="UpcomingList">
+
+        <div style="margin-top:1%;">
+          <ng-container matColumnDef="event">
+            <th mat-header-cell *matHeaderCellDef> Event </th>
+            <td mat-cell *matCellDef="let element"> {{element.event}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="email_date">
+            <th mat-header-cell *matHeaderCellDef>Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.email_date | datex:'DD-MMM-YYYY'}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="DisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: DisplayedColumns;"></tr>
+        </div>
+      </table>
+      <div *ngIf="UpcomingList && UpcomingList.length == 0" class="search_above_message">
+        <span class="search_no_results">No upcoming events</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div>
+  <!-- <div class="modal fade" id="ViewEmails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Email Notification Details</h5>
+          <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div [innerHtml]="message"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Email Notification Details</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div [innerHtml]="message"></div>
+    </div>
+  </ng-template>

@@ -1,0 +1,112 @@
+<div *ngIf="loadingOverlayFlag == true" id="loadingOverlay" class="loadingOverlay pageOverlay">
+  <div class="loadingMessage">&nbsp;</div>
+</div>
+<h2 class="dialog-title" mat-dialog-title mat-dialog-draggable-title>Opt Out</h2>
+<div>
+  <label for="pwd" class="required" style="font-size: 16px; color: #707070; padding: 0 15px 15px 15px;">You have
+    selected
+    following chases from Auto renewal</label>
+</div>
+<mat-dialog-content class="dialog-content">
+  <div class="mat-tables">
+    <div class="mat-header-rows">
+      <div class="mat-header-cells">Select</div>
+      <div class="mat-header-cells">Autorenew ID</div>
+      <div class="mat-header-cells">Tier1</div>
+      <div class="mat-header-cells">Tier2</div>
+      <div class="mat-header-cells">Payer</div>
+      <div class="mat-header-cells" style="flex: 1.5!important">Last Notification Date</div>
+      <div class="mat-header-cells">Modified Date</div>
+      <div class="mat-header-cells">Total</div>
+      <div class="mat-header-cells" style="flex: 0.2!important"></div>
+    </div>
+    <div *ngFor="let records of autoRenewList; let index=index">
+      <div class="mat-rows">
+        <div class="mat-cells">
+          <mat-checkbox type="checkbox" (change)="selectAll($event.checked, records, index)"
+            [(ngModel)]="records.checked" [disabled]="records && records.validQuoteList && records.validQuoteList == 0">
+          </mat-checkbox>
+        </div>
+        <div class="mat-cells">{{records.autorenew_id}}</div>
+        <div class="mat-cells" [innerHTML]="records.t1name"></div>
+        <div class="mat-cells" [innerHTML]="records.t2name"></div>
+        <div *ngIf="records.new_payer == null" class="mat-cells" [innerHTML]="records.payer"></div>
+        <div *ngIf="records.new_payer != null" class="mat-cells" [innerHTML]="records.new_payer"></div>
+        <div class="mat-cells" style="flex: 1.5!important">{{records.previous_reminder_date | datex:'DD-MMM-YYYY'}}</div>
+        <div class="mat-cells">{{records.updatedOn | date: globalDateFormat.dateformat}}</div>
+        <div class="mat-cells">{{records.currency_code}} {{records.sum_OF_avaya_net_price}}</div>
+        <div class="mat-cells" style="flex: 0.2!important">
+          <div class="center" *ngIf="!isCollapsed[index]" (click)="isCollapsed[index] = !isCollapsed[index];"
+            [attr.aria-expanded]="!isCollapsed[index]" [attr.aria-controls]="'collapseViewMore-' + index">
+            <i class="material-icons" style="color: red; cursor: pointer"> add
+            </i>
+          </div>
+          <div class="center" *ngIf="isCollapsed[index]" (click)="isCollapsed[index] = !isCollapsed[index]">
+            <i class="material-icons" style="color: red; cursor: pointer"> remove
+            </i>
+          </div>
+        </div>
+      </div>
+      <div [id]="'collapseViewMore-' + index" [collapse]="!isCollapsed[index]">
+        <div class="table-accordion" style="grid-template-columns: 1fr!important; padding: 15px;">
+          <p class="quotes_title" style="margin-bottom: 5px;">Quotes Details</p>
+          <div class="mat-tables_quotes" style="border: 1px solid #b0b0b0;">
+            <div class="mat-header-rows"
+              style="min-height: 30px; color: #000000; border-bottom: 1px solid #b4b4b4; background: #f6f6f6;">
+              <div class="mat-header-cells">Select</div>
+              <div class="mat-header-cells">Quote ID</div>
+              <div class="mat-header-cells">Contract Number</div>
+              <div class="mat-header-cells">Contract Expiry Date</div>
+              <div class="mat-header-cells">Quote Price</div>
+              <div class="mat-header-cells">Include Promotion</div>
+              <div class="mat-header-cells">Opt In/Out</div>
+
+            </div>
+            <div *ngFor="let record of records.quoteList; let index=index">
+              <div class="mat-rows" [ngClass]="{ 'ineligible-row': record.is_eligible === 'N'}">
+                <div class="mat-cells">
+                  <mat-checkbox type="checkbox"
+                    [disabled]="record.quote_sub_status == '8' || record.is_eligible == 'N' || record.quote_sub_status == '6'||record.quote_sub_status == '4'"
+                    (change)="onChange(record.quote_id, $event.checked)" [(ngModel)]="record.checked"
+                    matTooltip="This Quote is not Eligible" [matTooltipDisabled]="record.is_eligible === 'Y'">
+                  </mat-checkbox>
+                </div>
+                <div class="mat-cells">{{record.parent_QUOTE_ID}}</div>
+                <div class="mat-cells">{{record.expiring_contractnumber}}</div>
+                <div class="mat-cells">{{record.contract_expiry_date | datex:'DD-MMM-YYYY'}}</div>
+                <div class="mat-cells">{{records.currency_code}} {{record.avaya_net_price}}</div>
+                <div class="mat-cells">{{record.is_promotion_applied}}</div>
+                <div class="mat-cells" *ngIf="(record.quote_sub_status == '5' || record.quote_sub_status == '7')" style="color: green">IN</div>
+                <div class="mat-cells" *ngIf="record.quote_sub_status == '6'" style="color: red">OUT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-content class="dialog-content">
+  <div class="po_formfields">
+    <mat-form-field>
+      <mat-label>Reason</mat-label>
+      <mat-select (selectionChange)="popupmethod($event,selectedReason)" [(ngModel)]="selectedReason" required>
+        <mat-option *ngFor="let fields of reason_codes" [value]="fields">{{fields}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Comment" [(ngModel)]="selectedComment"></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-footer">
+  <div class="table-accordion">
+    <div class="accordion-col3">
+      <mat-label>Do you wish to proceed ?</mat-label>
+      <button class="btn btn-secondary button-cancel" (click)="cancel()">No</button>
+      <button class="btn btn-secondary button-ok"
+        [disabled]="disabledSubmitButton || selectedReason === undefined || selectedReason === null"
+        (click)="optout()">Yes</button>
+    </div>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,66 @@
+@import "../../../assets/global-styles.scss";
+@import "../../../assets/media-queries.scss";
+//@import "../../../assets/fonts-gotham.scss";
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css";
+
+.tablist {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+
+  margin: 0;
+  list-style-type: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  font-size: 0;
+  width: 100%;
+  border: 1px solid #f1f1f3;
+}
+li {
+  background: #f1f1f3;
+  border-top: 0;
+  border-right: 2px solid #eee;
+  flex: 1;
+  padding: 0;
+  text-align: center;
+  height: 35px;
+  width: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px 1px 0 0;
+}
+
+.dashboard-sub-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  grid-gap: 10px;
+  justify-content: center;
+  margin: 15px 0;
+  padding: 0px 10px 15px 10px;
+}
+
+.selected {
+  //    margin: 2px 1px 0 0;
+  border-top: 3px solid red;
+  background: white;
+}
+.example-tab-icon {
+  font-size: 25px;
+  color: #f75146;
+  padding: 6%;
+  cursor: pointer;
+}
+.subrow_optIn{
+  margin-left:-9%;
+}
+@media screen and (-ms-high-contrast: active),
+  screen and (-ms-high-contrast: none) {
+    .subrow_optIn{
+    margin-left:-9%;
+  }
+  }

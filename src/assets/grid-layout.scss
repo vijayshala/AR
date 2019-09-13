@@ -1,0 +1,32 @@
+//Main grid container - by default items are in row
+.a-grid-container{
+    display: grid;
+    grid-template-rows: 1fr;
+    background: $color-white;
+    max-width: 1440px;
+    margin: 0 auto;
+    .a-grid-item{
+        display: grid;
+    }
+}
+//split into two columns equally 
+.grid-column{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+// split columns into 60%-40%
+.grid-column-sixty-forty{
+    grid-template-columns: 60% 40%;
+}
+//split into two columns with 70%-30%
+.grid-column-seventy-thirty{
+    grid-template-columns: 2fr 1fr;
+}
+//split into two columns with 30%-70%
+.grid-column-thirty-seventy{
+    grid-template-columns: 1fr 2fr;
+}
+//split grid items into three columns with 25%-50%-25%
+.grid-column-three{
+    grid-template-columns: 1fr 2fr 1fr;
+}

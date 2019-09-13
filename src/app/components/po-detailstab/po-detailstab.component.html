@@ -1,0 +1,16 @@
+<!-- <div *ngIf="isDistiFlag"> -->
+    <div *ngIf="isShowBothTabDetails">
+<div class="dashboard-tabs" style="margin-top:2%;" >
+  <ul class="tablist">
+    <li routerLinkActive="selected"  (click)="sendNewPOMessage()" [routerLink]="['podetails']">
+     Distributor PO Details </li>
+    <li routerLinkActive="selected"  [routerLink]="['resellerpodetails']">
+     Reseller PO Details </li>
+      </ul>
+      </div>
+      <router-outlet></router-outlet>
+      </div>
+     <div *ngIf="isShowPoDetails"> <app-podetails></app-podetails></div>
+     <!-- <div *ngIf="!isResellerFlag && !isDistiFlag && !tierNameFlag"> <app-podetails></app-podetails></div> -->
+     <div *ngIf="isShowResellerDetails"> <app-reseller-podetails></app-reseller-podetails></div>
+    
